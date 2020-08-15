@@ -1,0 +1,1524 @@
+{
+	"info": {
+		"_postman_id": "6da09e46-7ffa-416d-9e7b-f715e880ac18",
+		"name": "Ghost Inspector",
+		"description": "---Rate Limits---\r\n\r\n\r\nIn order to protect the availability of our systems to all clients we impose rate limits that restrict the number of requests you can make to our API within a given time frame. After you have reached the maximum requests allowed within the time period, you will receive a 429 - Too Many Requests response from our system.\r\n\r\nThe API rate limit restrictions are as follows:\r\nBurst\r\n300 requests\r\nSustained\r\n10 requests/second\r\n\r\n\r\n\r\n\r\n\r\n\r\n---ERRORS---\r\n\r\n\r\nAuthentication\r\nThe error that is returned when authentication fails.\r\nResponse\r\n{\r\n  \"code\": \"ERROR\",\r\n  \"errorType\": \"AUTHENTICATION_ERROR\",\r\n  \"message\": \"User ID is invalid\"\r\n}\r\n\r\nValidation\r\nThe error that is returned when the request is not valid.\r\nResponse\r\n{\r\n  \"code\": \"ERROR\",\r\n  \"errorType\": \"VALIDATION_ERROR\",\r\n  \"message\": \"Test not found\"\r\n}\r\n\r\nTimeout\r\nThe error that is returned when the connection exceeds our time limit.\r\nResponse\r\n{\r\n  \"code\": \"ERROR\",\r\n  \"errorType\": \"TIMEOUT_ERROR\",\r\n  \"message\": \"Your execution is still in progress. Our API reached its timeout.\"\r\n}\r\n\r\nServer Issues\r\nThe error that is returned when the Ghost Inspector service is having issues.\r\nResponse\r\n{\r\n  \"code\": \"ERROR\",\r\n  \"errorType\": \"SERVER_ERROR\",\r\n  \"message\": \"The Ghost Inspector service is encountering issues.\"\r\n}",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Folders",
+			"item": [
+				{
+					"name": "List Folders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/folders/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"folders",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "Fetch an array of the folders in your account"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Folder",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/folders/{{folderId}}/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"folders",
+								"{{folderId}}",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "Fetch a single folder by folderId"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Folder",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/folders/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"folders",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "name\r\nName for the new folder\r\norganization\r\nThe ID of the organization this folder should be within\r\n\r\n\r\ncurl example:\r\nPOST Request with JSON body:\r\ncurl -H 'Content-Type: application/json' -X POST -d \"{\"name\":\"Fancy Fresh Folder\", organization: \"5a1b419ae40144279f9ac680\"}\" 'https://api.ghostinspector.com/v1/folders/?apiKey=<apiKey>\"'\r\n\r\nexample Response\r\n{\r\n  \"code\": \"SUCCESS\",\r\n  \"data\": {\r\n    \"_id\": \"5aed177226a8722dad009e39\",\r\n    \"organization\": \"547fb82d92423992d52a4fea\",\r\n    \"name\": \"Fancy Fresh Folder\"    \r\n  }\r\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Folder",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/folders/{{folderId}}/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"folders",
+								"{{folderId}}",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "JSON Body\r\n\r\nname: Name of the folder"
+					},
+					"response": []
+				},
+				{
+					"name": "List Folder Suites",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/folders/{{folderId}}/suites/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"folders",
+								"{{folderId}}",
+								"suites",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "Fetch an array of all the suites in a folder"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Organizations",
+			"item": [
+				{
+					"name": "Get Running",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/organizations/{{organizationId}}/running/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"organizations",
+								"{{organizationId}}",
+								"running",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "Fetch a list of all the currently-executing results for the entire organization and return the results\r\n\r\nEexample Response\r\n{\r\n  \"code\": \"SUCCESS\",\r\n  \"data\": [\r\n    {\r\n      \"_id\": \"5e2b6294854c611834aa6cde\",\r\n      \"autoRetry\": false,\r\n      \"autoRetryTriggered\": false,\r\n      \"browser\": \"chrome\",\r\n      \"commentCount\": 0,\r\n      \"comments\": [],\r\n      \"console\": [],\r\n      \"dateCreated\": \"2020-01-24T21:33:08.870Z\",\r\n      \"dateExecutionStarted\": \"2020-01-24T21:33:09.571Z\",\r\n      \"disableVisuals\": false,\r\n      \"disallowInsecureCertificates\": false,\r\n      \"endUrl\": \"\",\r\n      \"executionHost\": \"test001.ghostinspector.net\",\r\n      \"executionTime\": null,\r\n      \"failOnJavaScriptError\": false,\r\n      \"filters\": [],\r\n      \"finalDelay\": 0,\r\n      \"globalStepDelay\": 250,\r\n      \"language\": null,\r\n      \"maxAjaxDelay\": 10000,\r\n      \"maxWaitDelay\": 15000,\r\n      \"name\": \"Login and Check Dashboard\",\r\n      \"organization\": \"5a1b419ae40144279f9ac680\",\r\n      \"passing\": null,\r\n      \"region\": \"us-east-1\",\r\n      \"screenshotCompareBaselineResult\": null,\r\n      \"screenshotCompareDifference\": null,\r\n      \"screenshotCompareEnabled\": true,\r\n      \"screenshotComparePassing\": null,\r\n      \"screenshotCompareThreshold\": 0.01,\r\n      \"startUrl\": \"https://ghostinspector.com\",\r\n      \"steps\": [\r\n        {\r\n          \"_id\": \"5e2b5ce5854c611834aa6cd2\",\r\n          \"command\": \"click\",\r\n          \"condition\": null,\r\n          \"extra\": {\r\n            \"source\": {\r\n              \"sequence\": 0,\r\n              \"test\": \"5e2a0b342d0f5947444c31fc\"\r\n            }\r\n          },\r\n          \"notes\": \"\",\r\n          \"optional\": false,\r\n          \"passing\": null,\r\n          \"private\": false,\r\n          \"sequence\": 0,\r\n          \"target\": \".site-logo a\",\r\n          \"value\": \"\",\r\n          \"variableName\": \"\"\r\n        }\r\n        {\r\n          \"_id\": \"5e2b5ce5854c611834aa6cd1\",\r\n          \"command\": \"assertTextPresent\",\r\n          \"condition\": null,\r\n          \"extra\": {\r\n            \"source\": {\r\n              \"sequence\": 1,\r\n              \"test\": \"5e2a0b342d0f5947444c31fc\"\r\n            }\r\n          },\r\n          \"notes\": \"\",\r\n          \"optional\": false,\r\n          \"passing\": null,\r\n          \"private\": false,\r\n          \"sequence\": 1,\r\n          \"target\": \"h1\",\r\n          \"value\": \"Automated\",\r\n          \"variableName\": \"\"\r\n        }\r\n      ],\r\n      \"suiteResult\": null,\r\n      \"test\": {\r\n        \"_id\": \"5e2a0b342d0f5947444c31fc\",\r\n        \"name\": \"Login and Check Dashboard\",\r\n        \"organization\": \"5a1b419ae40144279f9ac680\",\r\n        \"suite\": \"5a1e1b90154014760af39ef5\"\r\n      },\r\n      \"urls\": [],\r\n      \"user\": {\r\n        \"_id\": \"55b2accc4f66690c07294201\",\r\n        \"name\": \"Justin Klemm\"\r\n      },\r\n      \"uuid\": \"6e930f8b-37f4-42e6-a4a1-11d85cf57fd0\",\r\n      \"viewportSize\": {\r\n        \"height\": 768,\r\n        \"width\": 1024\r\n      }\r\n    }\r\n  ]\r\n}"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Suites",
+			"item": [
+				{
+					"name": "List Suites",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/suites/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"suites",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "Fetch an array of all the suites in your account.\r\n\r\nResponse\r\n{\r\n  \"code\": \"SUCCESS\",\r\n  \"data\": [\r\n    {\r\n      \"_id\": \"5a1e1b90154014760af39ef5\",\r\n      \"abortOnTestFailure\": false,\r\n      \"autoRetry\": false,\r\n      \"browser\": \"chrome\",\r\n      \"dateCreated\": \"2017-11-29T02:29:36.132Z\",\r\n      \"disableVisuals\": false,\r\n      \"disallowInsecureCertificates\": false,\r\n      \"failOnJavaScriptError\": false,\r\n      \"finalDelay\": 0,\r\n      \"folder\": \"5af3736b34967c7736a5bd33\",\r\n      \"globalStepDelay\": 250,\r\n      \"httpHeaders\": [],\r\n      \"language\": null,\r\n      \"maxAjaxDelay\": 10000,\r\n      \"maxConcurrentTests\": 0,\r\n      \"maxWaitDelay\": 15000,\r\n      \"name\": \"Smoke Tests\",\r\n      \"notificationsSuite\": {},\r\n      \"organization\": {\r\n        \"_id\": \"5a1b419ae40144279f9ac680\",\r\n        \"name\": \"Ghost Inspector\",\r\n        \"personal\": false\r\n      },\r\n      \"persistVariables\": false,\r\n      \"publicStatusEnabled\": false,\r\n      \"region\": \"us-east-1\",\r\n      \"screenshotCompareEnabled\": false,\r\n      \"screenshotCompareThreshold\": 0.1,\r\n      \"startUrl\": \"\",\r\n      \"testCount\": 1,\r\n      \"testFrequency\": 0,\r\n      \"testFrequencyAdvanced\": [],\r\n      \"variables\": [],\r\n      \"viewportSize\": {\r\n        \"height\": 768,\r\n        \"width\": 1024\r\n      }\r\n    }\r\n  ]\r\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Suite",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/suites/{{suiteId}}/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"suites",
+								"{{suiteId}}",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "Fetch a single suite\r\n\r\nResponse\r\n{\r\n  \"code\": \"SUCCESS\",\r\n  \"data\": {\r\n    \"_id\": \"5a1e1b90154014760af39ef5\",\r\n    \"abortOnTestFailure\": false,\r\n    \"autoRetry\": false,\r\n    \"browser\": \"chrome\",\r\n    \"dataSource\": null,\r\n    \"dateCreated\": \"2017-11-29T02:29:36.132Z\",\r\n    \"disableVisuals\": false,\r\n    \"disallowInsecureCertificates\": false,\r\n    \"failOnJavaScriptError\": false,\r\n    \"finalDelay\": 0,\r\n    \"folder\": \"5af3736b34967c7736a5bd33\",\r\n    \"globalStepDelay\": 250,\r\n    \"httpHeaders\": [],\r\n    \"language\": null,\r\n    \"maxAjaxDelay\": 10000,\r\n    \"maxConcurrentTests\": 0,\r\n    \"maxWaitDelay\": 15000,\r\n    \"name\": \"Smoke Tests\",\r\n    \"organization\": {\r\n      \"_id\": \"5a1b419ae40144279f9ac680\",\r\n      \"name\": \"Ghost Inspector\"\r\n    },\r\n    \"persistVariables\": false,\r\n    \"publicStatusEnabled\": false,\r\n    \"region\": \"us-east-1\",\r\n    \"screenshotCompareEnabled\": false,\r\n    \"screenshotCompareThreshold\": 0.1,\r\n    \"startUrl\": \"\",\r\n    \"testCount\": 1,\r\n    \"testFrequency\": 0,\r\n    \"testFrequencyAdvanced\": [],\r\n    \"variables\": [],\r\n    \"viewportSize\": {\r\n      \"height\": 768,\r\n      \"width\": 1024\r\n    }\r\n  }\r\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Execute Suite",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/suites/{{suiteId}}/execute/?apiKey={{apiKey}}&startUrl={{startUrl}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"suites",
+								"{{suiteId}}",
+								"execute",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								},
+								{
+									"key": "startUrl",
+									"value": "{{startUrl}}"
+								}
+							]
+						},
+						"description": "\r\n\r\n---NOTE---\r\nNote: We execute tests concurrently, however this request can still take some time to return. In general, it will return in the time that it takes to run your longest test; however, this can vary depending on the load on our system and the number of tests being run. We’d suggest programming your request to deal with response times up to 20 minutes. If all the suite's tests are not completed within 20 minutes, the API will send a timeout error (although your tests will still be triggered).\r\n\r\n\r\n\r\n---PARAMS---\r\n\r\napiKey\r\nYour API key provided in your account\r\nsuiteId\r\nThe ID of the suite to execute\r\nstartUrl\r\n(Optional) Alternate start URL to use for all tests in this execution only\r\nbrowser\r\n(Optional) Alternate browser to use for this execution. The following options are available: chrome (Latest version), chrome-<version> (Specific version of Chrome, for example chrome-83), firefox (Latest version), firefox-<version> (Specific version of Firefox, for example firefox-77).\r\nuserAgent\r\n(Optional) Alternate user agent to use for all tests in this execution only\r\nregion\r\n(Optional) Geo-location for test execution. The following options are available: us-east-1 (default), us-west-1, ca-central-1, eu-central-1, eu-west-1, eu-west-2, eu-west-3, eu-north-1, me-south-1, ap-east-1, ap-northeast-1, ap-northeast-2, ap-southeast-1, ap-southeast-2, ap-south-1, sa-east-1\r\nhttpAuthUsername\r\n(Optional) Alternate HTTP authentication username to use for this execution only\r\nhttpAuthPassword\r\n(Optional) Alternate HTTP authentication password to use for this execution only\r\ndisableNotifications\r\n(Optional) Use 1 to disable (or 0 to enable) all notifications for this execution only\r\nimmediate\r\n(Optional) Use 1 to initiate the execution, then immediate return a response (without results)\r\ndataFile\r\n(Optional) A CSV file containing a row of variable values for each suite run as outlined in our data-driven testing section. A POST request must be used when sending this file. When included, an array of suite results will be returned instead of an array of test result.\r\ndisableVisuals\r\n(Optional) Use 1 to disable (or 0 to enable) capturing screenshots and videos for this execution only\r\nscreenshotCompareEnabled\r\n(Optional) Use 1 to enable (or 0 to disable) screenshot comparison for this execution only\r\nscreenshotCompareThreshold\r\n(Optional) Use a number between 0.0 and 1.0 to set the tolerance when comparing screenshots (for this execution only). Will be ignored if screenshot comparison or visual capture is disabled.\r\nscreenshotExclusions\r\n(Optional) Use comma-separated CSS selectors. Elements matched by this CSS will be hidden before the screenshot is taken (for this execution only). Will be ignored if screenshot comparison or visual capture is disabled.\r\nscreenshotTarget\r\n(Optional) Use a CSS or XPath selector. Screenshot will be taken of the element specified instead of the whole page (for this execution only). Will be ignored if screenshot comparison or visual capture is disabled.\r\nviewport\r\n(Optional) Alternate screen size to use for all tests in this execution only. This should be a string formatted as {width}x{height}, for example 1024x768.\r\nslackChannel\r\n(Optional) Specify the Slack channel to notify for this suite run. Note that the value must be myChannel or %23myChannel and not #myChannel.\r\n[varName]\r\n(Optional) Pass in custom variables for the suite run that are accessible in your steps via {{varName}}. For example, including &firstName=Justin in the API call will create a {{firstName}} variable with the value Justin in each test run\r\n\r\n\r\n\r\n---cURL EXAMPLES---\r\nRequest Examples using cURL\r\nNote: In all cases POST variables will override GET parameters.\r\nGET Request with Parameters:\r\ncurl \"https://api.ghostinspector.com/v1/suites/<suiteId>/execute/?apiKey=<key>&startUrl=<url>\"\r\n\r\nPOST Request with Parameters:\r\ncurl -d \"apiKey=<key>\" -d \"startUrl=<url>\" \"https://api.ghostinspector.com/v1/suites/<suiteId>/execute/\"\r\n\r\nPOST Request with JSON body:\r\ncurl -H 'Content-Type: application/json' -d '{\"apiKey\": \"<key>\", \"startUrl\": \"url\", \"myVar\": 99}' 'https://api.ghostinspector.com/v1/suites/<suiteId>/execute/'\r\n\r\nPOST Multipart Form Request with CSV File:\r\ncurl -F \"apiKey=<key>\" -F \"dataFile=@vars.csv\" \"https://api.ghostinspector.com/v1/suites/<suiteId>/execute/\"\r\n\r\n\r\n\r\n\r\n\r\n\r\n--- EXAMPLE Response ---\r\n{\r\n  \"code\": \"SUCCESS\",\r\n  \"data\": [\r\n    {\r\n      \"_id\": \"5e2b8538d4c4051afbd22493\",\r\n      \"autoRetry\": false,\r\n      \"autoRetryTriggered\": false,\r\n      \"browser\": \"chrome-79\",\r\n      \"commentCount\": 0,\r\n      \"comments\": [],\r\n      \"console\": [\r\n        {\r\n          \"_id\": \"5e2b854365c1671520bc20f9\",\r\n          \"dateExecuted\": \"2020-01-25T00:01:01.649Z\",\r\n          \"error\": false,\r\n          \"output\": \"An  element was lazyloaded with loading=lazy, but had no dimensions specified. Specifying dimensions improves performance. See https://crbug.com/954323\",\r\n          \"url\": \"https://ghostinspector.com/\"\r\n        }\r\n      ],\r\n      \"dateCreated\": \"2020-01-25T00:00:56.897Z\",\r\n      \"dateExecutionFinished\": \"2020-01-25T00:01:07.629Z\",\r\n      \"dateExecutionStarted\": \"2020-01-25T00:00:59.598Z\",\r\n      \"disableVisuals\": false,\r\n      \"disallowInsecureCertificates\": false,\r\n      \"endUrl\": \"https://ghostinspector.com/docs/\",\r\n      \"executionHost\": \"test001.ghostinspector.net\",\r\n      \"executionTime\": 8031,\r\n      \"extractions\": {},\r\n      \"failOnJavaScriptError\": false,\r\n      \"filters\": [],\r\n      \"finalDelay\": 0,\r\n      \"globalStepDelay\": 250,\r\n      \"language\": null,\r\n      \"maxAjaxDelay\": 10000,\r\n      \"maxWaitDelay\": 15000,\r\n      \"name\": \"Login and Check Dashboard\",\r\n      \"organization\": \"5a1b419ae40144279f9ac680\",\r\n      \"passing\": true,\r\n      \"region\": \"us-east-1\",\r\n      \"screenshot\": {\r\n        \"original\": {\r\n          \"defaultUrl\": \"https://ghostinspector-example.s3.amazonaws.com/screenshots/453ca18c-b21e-4eac-9fc7-ab05b1f4d296-original.png\",\r\n          \"dims\": {\r\n            \"h\": 2708,\r\n            \"w\": 1024\r\n          },\r\n          \"path\": \"screenshots/453ca18c-b21e-4eac-9fc7-ab05b1f4d296-original.png\",\r\n          \"size\": 221486\r\n        },\r\n        \"small\": {\r\n          \"defaultUrl\": \"https://ghostinspector-example.s3.amazonaws.com/screenshots/453ca18c-b21e-4eac-9fc7-ab05b1f4d296-small.png\",\r\n          \"dims\": {\r\n            \"h\": 846,\r\n            \"w\": 320\r\n          },\r\n          \"path\": \"screenshots/453ca18c-b21e-4eac-9fc7-ab05b1f4d296-small.png\",\r\n          \"size\": 70909\r\n        }\r\n      },\r\n      \"screenshotCompareBaselineResult\": \"5e2b7924854c611834aa6cf7\",\r\n      \"screenshotCompareDifference\": 0,\r\n      \"screenshotCompareEnabled\": true,\r\n      \"screenshotComparePassing\": true,\r\n      \"screenshotCompareThreshold\": 0.01,\r\n      \"startUrl\": \"https://ghostinspector.com\",\r\n      \"steps\": [\r\n        {\r\n          \"_id\": \"5e2b854565c1671520bc20fe\",\r\n          \"command\": \"click\",\r\n          \"condition\": null,\r\n          \"dateExecuted\": \"2020-01-25T00:01:04.221Z\",\r\n          \"extra\": {\r\n            \"source\": {\r\n              \"sequence\": 0,\r\n              \"test\": \"5e2a0b342d0f5947444c31fc\"\r\n            }\r\n          },\r\n          \"notes\": \"\",\r\n          \"optional\": false,\r\n          \"passing\": true,\r\n          \"private\": false,\r\n          \"sequence\": 0,\r\n          \"target\": \".site-logo a\",\r\n          \"url\": \"https://ghostinspector.com/\",\r\n          \"value\": \"\",\r\n          \"variableName\": \"\"\r\n        },\r\n        {\r\n          \"_id\": \"5e2b854565c1671520bc20ff\",\r\n          \"command\": \"open\",\r\n          \"condition\": null,\r\n          \"dateExecuted\": \"2020-01-25T00:01:06.030Z\",\r\n          \"extra\": {\r\n            \"source\": {\r\n              \"sequence\": 1,\r\n              \"test\": \"5e2a0b342d0f5947444c31fc\"\r\n            }\r\n          },\r\n          \"notes\": \"\",\r\n          \"optional\": false,\r\n          \"passing\": true,\r\n          \"private\": false,\r\n          \"sequence\": 1,\r\n          \"target\": \"\",\r\n          \"url\": \"https://ghostinspector.com/\",\r\n          \"value\": \"/docs/\",\r\n          \"variableName\": \"\"\r\n        }\r\n      ],\r\n      \"suiteResult\": \"5e2b8538d4c4051afbd22492\",\r\n      \"test\": \"5e2a0b342d0f5947444c31fc\",\r\n      \"testName\": \"Login and Check Dashboard\",\r\n      \"urls\": [\r\n        \"https://ghostinspector.com\",\r\n        \"https://ghostinspector.com/\",\r\n        \"https://ghostinspector.com/docs/\"\r\n      ],\r\n      \"user\": {\r\n        \"_id\": \"55b2accc4f66690c07294201\",\r\n        \"name\": \"Justin Klemm\"\r\n      },\r\n      \"uuid\": \"453ca18c-b21e-4eac-9fc7-ab05b1f4d296\",\r\n      \"variables\": {\r\n        \"orgVar\": \"foo\"\r\n      },\r\n      \"video\": {\r\n        \"dims\": {\r\n          \"h\": 768,\r\n          \"w\": 1024\r\n        },\r\n        \"path\": \"videos/453ca18c-b21e-4eac-9fc7-ab05b1f4d296.mp4\",\r\n        \"url\": \"https://ghostinspector-example.s3.amazonaws.com/videos/453ca18c-b21e-4eac-9fc7-ab05b1f4d296.mp4\"\r\n      },\r\n      \"viewportSize\": {\r\n        \"height\": 768,\r\n        \"width\": 1024\r\n      }\r\n    }\r\n  ]\r\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Execute Suite Post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/suites/{{suiteId}}/execute/?apiKey={{apiKey}}&startUrl={{startUrl}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"suites",
+								"{{suiteId}}",
+								"execute",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								},
+								{
+									"key": "startUrl",
+									"value": "{{startUrl}}"
+								}
+							]
+						},
+						"description": "---POSTIT NOTE---\r\nNote: In all cases POST variables will override GET parameters.\r\n\r\n\r\n\r\n\r\n\r\n---NOTE---\r\nNote: We execute tests concurrently, however this request can still take some time to return. In general, it will return in the time that it takes to run your longest test; however, this can vary depending on the load on our system and the number of tests being run. We’d suggest programming your request to deal with response times up to 20 minutes. If all the suite's tests are not completed within 20 minutes, the API will send a timeout error (although your tests will still be triggered).\r\n\r\n\r\n\r\n---PARAMS---\r\n\r\napiKey\r\nYour API key provided in your account\r\nsuiteId\r\nThe ID of the suite to execute\r\nstartUrl\r\n(Optional) Alternate start URL to use for all tests in this execution only\r\nbrowser\r\n(Optional) Alternate browser to use for this execution. The following options are available: chrome (Latest version), chrome-<version> (Specific version of Chrome, for example chrome-83), firefox (Latest version), firefox-<version> (Specific version of Firefox, for example firefox-77).\r\nuserAgent\r\n(Optional) Alternate user agent to use for all tests in this execution only\r\nregion\r\n(Optional) Geo-location for test execution. The following options are available: us-east-1 (default), us-west-1, ca-central-1, eu-central-1, eu-west-1, eu-west-2, eu-west-3, eu-north-1, me-south-1, ap-east-1, ap-northeast-1, ap-northeast-2, ap-southeast-1, ap-southeast-2, ap-south-1, sa-east-1\r\nhttpAuthUsername\r\n(Optional) Alternate HTTP authentication username to use for this execution only\r\nhttpAuthPassword\r\n(Optional) Alternate HTTP authentication password to use for this execution only\r\ndisableNotifications\r\n(Optional) Use 1 to disable (or 0 to enable) all notifications for this execution only\r\nimmediate\r\n(Optional) Use 1 to initiate the execution, then immediate return a response (without results)\r\ndataFile\r\n(Optional) A CSV file containing a row of variable values for each suite run as outlined in our data-driven testing section. A POST request must be used when sending this file. When included, an array of suite results will be returned instead of an array of test result.\r\ndisableVisuals\r\n(Optional) Use 1 to disable (or 0 to enable) capturing screenshots and videos for this execution only\r\nscreenshotCompareEnabled\r\n(Optional) Use 1 to enable (or 0 to disable) screenshot comparison for this execution only\r\nscreenshotCompareThreshold\r\n(Optional) Use a number between 0.0 and 1.0 to set the tolerance when comparing screenshots (for this execution only). Will be ignored if screenshot comparison or visual capture is disabled.\r\nscreenshotExclusions\r\n(Optional) Use comma-separated CSS selectors. Elements matched by this CSS will be hidden before the screenshot is taken (for this execution only). Will be ignored if screenshot comparison or visual capture is disabled.\r\nscreenshotTarget\r\n(Optional) Use a CSS or XPath selector. Screenshot will be taken of the element specified instead of the whole page (for this execution only). Will be ignored if screenshot comparison or visual capture is disabled.\r\nviewport\r\n(Optional) Alternate screen size to use for all tests in this execution only. This should be a string formatted as {width}x{height}, for example 1024x768.\r\nslackChannel\r\n(Optional) Specify the Slack channel to notify for this suite run. Note that the value must be myChannel or %23myChannel and not #myChannel.\r\n[varName]\r\n(Optional) Pass in custom variables for the suite run that are accessible in your steps via {{varName}}. For example, including &firstName=Justin in the API call will create a {{firstName}} variable with the value Justin in each test run\r\n\r\n\r\n\r\n---cURL EXAMPLES---\r\nRequest Examples using cURL\r\nNote: In all cases POST variables will override GET parameters.\r\nGET Request with Parameters:\r\ncurl \"https://api.ghostinspector.com/v1/suites/<suiteId>/execute/?apiKey=<key>&startUrl=<url>\"\r\n\r\nPOST Request with Parameters:\r\ncurl -d \"apiKey=<key>\" -d \"startUrl=<url>\" \"https://api.ghostinspector.com/v1/suites/<suiteId>/execute/\"\r\n\r\nPOST Request with JSON body:\r\ncurl -H 'Content-Type: application/json' -d '{\"apiKey\": \"<key>\", \"startUrl\": \"url\", \"myVar\": 99}' 'https://api.ghostinspector.com/v1/suites/<suiteId>/execute/'\r\n\r\nPOST Multipart Form Request with CSV File:\r\ncurl -F \"apiKey=<key>\" -F \"dataFile=@vars.csv\" \"https://api.ghostinspector.com/v1/suites/<suiteId>/execute/\"\r\n\r\n\r\n\r\n\r\n\r\n\r\n--- EXAMPLE Response ---\r\n{\r\n  \"code\": \"SUCCESS\",\r\n  \"data\": [\r\n    {\r\n      \"_id\": \"5e2b8538d4c4051afbd22493\",\r\n      \"autoRetry\": false,\r\n      \"autoRetryTriggered\": false,\r\n      \"browser\": \"chrome-79\",\r\n      \"commentCount\": 0,\r\n      \"comments\": [],\r\n      \"console\": [\r\n        {\r\n          \"_id\": \"5e2b854365c1671520bc20f9\",\r\n          \"dateExecuted\": \"2020-01-25T00:01:01.649Z\",\r\n          \"error\": false,\r\n          \"output\": \"An  element was lazyloaded with loading=lazy, but had no dimensions specified. Specifying dimensions improves performance. See https://crbug.com/954323\",\r\n          \"url\": \"https://ghostinspector.com/\"\r\n        }\r\n      ],\r\n      \"dateCreated\": \"2020-01-25T00:00:56.897Z\",\r\n      \"dateExecutionFinished\": \"2020-01-25T00:01:07.629Z\",\r\n      \"dateExecutionStarted\": \"2020-01-25T00:00:59.598Z\",\r\n      \"disableVisuals\": false,\r\n      \"disallowInsecureCertificates\": false,\r\n      \"endUrl\": \"https://ghostinspector.com/docs/\",\r\n      \"executionHost\": \"test001.ghostinspector.net\",\r\n      \"executionTime\": 8031,\r\n      \"extractions\": {},\r\n      \"failOnJavaScriptError\": false,\r\n      \"filters\": [],\r\n      \"finalDelay\": 0,\r\n      \"globalStepDelay\": 250,\r\n      \"language\": null,\r\n      \"maxAjaxDelay\": 10000,\r\n      \"maxWaitDelay\": 15000,\r\n      \"name\": \"Login and Check Dashboard\",\r\n      \"organization\": \"5a1b419ae40144279f9ac680\",\r\n      \"passing\": true,\r\n      \"region\": \"us-east-1\",\r\n      \"screenshot\": {\r\n        \"original\": {\r\n          \"defaultUrl\": \"https://ghostinspector-example.s3.amazonaws.com/screenshots/453ca18c-b21e-4eac-9fc7-ab05b1f4d296-original.png\",\r\n          \"dims\": {\r\n            \"h\": 2708,\r\n            \"w\": 1024\r\n          },\r\n          \"path\": \"screenshots/453ca18c-b21e-4eac-9fc7-ab05b1f4d296-original.png\",\r\n          \"size\": 221486\r\n        },\r\n        \"small\": {\r\n          \"defaultUrl\": \"https://ghostinspector-example.s3.amazonaws.com/screenshots/453ca18c-b21e-4eac-9fc7-ab05b1f4d296-small.png\",\r\n          \"dims\": {\r\n            \"h\": 846,\r\n            \"w\": 320\r\n          },\r\n          \"path\": \"screenshots/453ca18c-b21e-4eac-9fc7-ab05b1f4d296-small.png\",\r\n          \"size\": 70909\r\n        }\r\n      },\r\n      \"screenshotCompareBaselineResult\": \"5e2b7924854c611834aa6cf7\",\r\n      \"screenshotCompareDifference\": 0,\r\n      \"screenshotCompareEnabled\": true,\r\n      \"screenshotComparePassing\": true,\r\n      \"screenshotCompareThreshold\": 0.01,\r\n      \"startUrl\": \"https://ghostinspector.com\",\r\n      \"steps\": [\r\n        {\r\n          \"_id\": \"5e2b854565c1671520bc20fe\",\r\n          \"command\": \"click\",\r\n          \"condition\": null,\r\n          \"dateExecuted\": \"2020-01-25T00:01:04.221Z\",\r\n          \"extra\": {\r\n            \"source\": {\r\n              \"sequence\": 0,\r\n              \"test\": \"5e2a0b342d0f5947444c31fc\"\r\n            }\r\n          },\r\n          \"notes\": \"\",\r\n          \"optional\": false,\r\n          \"passing\": true,\r\n          \"private\": false,\r\n          \"sequence\": 0,\r\n          \"target\": \".site-logo a\",\r\n          \"url\": \"https://ghostinspector.com/\",\r\n          \"value\": \"\",\r\n          \"variableName\": \"\"\r\n        },\r\n        {\r\n          \"_id\": \"5e2b854565c1671520bc20ff\",\r\n          \"command\": \"open\",\r\n          \"condition\": null,\r\n          \"dateExecuted\": \"2020-01-25T00:01:06.030Z\",\r\n          \"extra\": {\r\n            \"source\": {\r\n              \"sequence\": 1,\r\n              \"test\": \"5e2a0b342d0f5947444c31fc\"\r\n            }\r\n          },\r\n          \"notes\": \"\",\r\n          \"optional\": false,\r\n          \"passing\": true,\r\n          \"private\": false,\r\n          \"sequence\": 1,\r\n          \"target\": \"\",\r\n          \"url\": \"https://ghostinspector.com/\",\r\n          \"value\": \"/docs/\",\r\n          \"variableName\": \"\"\r\n        }\r\n      ],\r\n      \"suiteResult\": \"5e2b8538d4c4051afbd22492\",\r\n      \"test\": \"5e2a0b342d0f5947444c31fc\",\r\n      \"testName\": \"Login and Check Dashboard\",\r\n      \"urls\": [\r\n        \"https://ghostinspector.com\",\r\n        \"https://ghostinspector.com/\",\r\n        \"https://ghostinspector.com/docs/\"\r\n      ],\r\n      \"user\": {\r\n        \"_id\": \"55b2accc4f66690c07294201\",\r\n        \"name\": \"Justin Klemm\"\r\n      },\r\n      \"uuid\": \"453ca18c-b21e-4eac-9fc7-ab05b1f4d296\",\r\n      \"variables\": {\r\n        \"orgVar\": \"foo\"\r\n      },\r\n      \"video\": {\r\n        \"dims\": {\r\n          \"h\": 768,\r\n          \"w\": 1024\r\n        },\r\n        \"path\": \"videos/453ca18c-b21e-4eac-9fc7-ab05b1f4d296.mp4\",\r\n        \"url\": \"https://ghostinspector-example.s3.amazonaws.com/videos/453ca18c-b21e-4eac-9fc7-ab05b1f4d296.mp4\"\r\n      },\r\n      \"viewportSize\": {\r\n        \"height\": 768,\r\n        \"width\": 1024\r\n      }\r\n    }\r\n  ]\r\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Suite",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/suites/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"suites",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "Create a suite and return the new suite.\r\n\r\nJSON Body\r\nname\r\nName for the new suite\r\norganization\r\nThe ID of the organization this suite should be within\r\n\r\nRequest Example using cURL\r\n\r\nPOST Request with JSON body:\r\ncurl -H 'Content-Type: application/json' -X POST -d \"{\"name\":\"Sweet New Suite\", organization: \"5a1b419ae40144279f9ac680\"}\" 'https://api.ghostinspector.com/v1/suites/?apiKey=<apiKey>\"'\r\n\r\nResponse\r\n{\r\n  \"code\": \"SUCCESS\",\r\n  \"data\": {\r\n    \"_id\": \"5a1e1b90154014760af39ef5\",\r\n    \"abortOnTestFailure\": false,\r\n    \"autoRetry\": false,\r\n    \"browser\": \"chrome\",\r\n    \"dataSource\": null,\r\n    \"dateCreated\": \"2017-11-29T02:29:36.132Z\",\r\n    \"disableVisuals\": false,\r\n    \"disallowInsecureCertificates\": false,\r\n    \"failOnJavaScriptError\": false,\r\n    \"finalDelay\": 0,\r\n    \"folder\": null,\r\n    \"globalStepDelay\": 250,\r\n    \"httpHeaders\": [],\r\n    \"language\": null,\r\n    \"maxAjaxDelay\": 10000,\r\n    \"maxConcurrentTests\": 0,\r\n    \"maxWaitDelay\": 15000,\r\n    \"name\": \"Sweet New Suite\",\r\n    \"organization\": {\r\n      \"_id\": \"5a1b419ae40144279f9ac680\",\r\n      \"name\": \"Ghost Inspector\"\r\n    },\r\n    \"persistVariables\": false,\r\n    \"publicStatusEnabled\": false,\r\n    \"region\": \"us-east-1\",\r\n    \"screenshotCompareEnabled\": false,\r\n    \"screenshotCompareThreshold\": 0.1,\r\n    \"startUrl\": \"\",\r\n    \"testCount\": 0,\r\n    \"testFrequency\": 0,\r\n    \"testFrequencyAdvanced\": [],\r\n    \"variables\": [],\r\n    \"viewportSize\": {\r\n      \"height\": 768,\r\n      \"width\": 1024\r\n    }\r\n  }\r\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Suite",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/suites/{{suiteId}}/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"suites",
+								"{{suiteId}}",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "Update a suite and return the updated suite.\r\n\r\nRequest Example using cURL\r\n\r\nPOST Request with JSON body:\r\ncurl -H 'Content-Type: application/json' -X POST -d \"{\"_id\":\"<suiteId>\", name: \"Sweet New Suite (updated)\"}\" 'https://api.ghostinspector.com/v1/suites/<suiteId>/?apiKey=<apiKey>\"'\r\n\r\nexample Response\r\n{\r\n  \"code\": \"SUCCESS\",\r\n  \"data\": {\r\n    \"_id\": \"5a1e1b90154014760af39ef5\",\r\n    \"abortOnTestFailure\": false,\r\n    \"autoRetry\": false,\r\n    \"browser\": \"chrome\",\r\n    \"dataSource\": null,\r\n    \"dateCreated\": \"2017-11-29T02:29:36.132Z\",\r\n    \"disableVisuals\": false,\r\n    \"disallowInsecureCertificates\": false,\r\n    \"failOnJavaScriptError\": false,\r\n    \"finalDelay\": 0,\r\n    \"folder\": null,\r\n    \"globalStepDelay\": 250,\r\n    \"httpHeaders\": [],\r\n    \"language\": null,\r\n    \"maxAjaxDelay\": 10000,\r\n    \"maxConcurrentTests\": 0,\r\n    \"maxWaitDelay\": 15000,\r\n    \"name\": \"Sweet New Suite (updated)\",\r\n    \"organization\": {\r\n      \"_id\": \"5a1b419ae40144279f9ac680\",\r\n      \"name\": \"Ghost Inspector\"\r\n    },\r\n    \"persistVariables\": false,\r\n    \"publicStatusEnabled\": false,\r\n    \"region\": \"us-east-1\",\r\n    \"screenshotCompareEnabled\": false,\r\n    \"screenshotCompareThreshold\": 0.1,\r\n    \"startUrl\": \"\",\r\n    \"testCount\": 0,\r\n    \"testFrequency\": 0,\r\n    \"testFrequencyAdvanced\": [],\r\n    \"variables\": [],\r\n    \"viewportSize\": {\r\n      \"height\": 768,\r\n      \"width\": 1024\r\n    }\r\n  }\r\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Duplicate Suite",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/suites/{{suiteId}}/duplicate/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"suites",
+								"{{suiteId}}",
+								"duplicate",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "Duplicate a suite and return the new suite.\r\n\r\nexample Response\r\n{\r\n  \"code\": \"SUCCESS\",\r\n  \"data\": {\r\n    \"_id\": \"5e2b860ed4c4051afbd22496\",\r\n    \"abortOnTestFailure\": false,\r\n    \"autoRetry\": false,\r\n    \"browser\": \"chrome\",\r\n    \"dateCreated\": \"2020-01-25T00:04:30.303Z\",\r\n    \"dateExecutionTriggered\": \"1970-01-01T00:00:00.000Z\",\r\n    \"disableVisuals\": false,\r\n    \"disallowInsecureCertificates\": false,\r\n    \"failOnJavaScriptError\": false,\r\n    \"finalDelay\": 0,\r\n    \"folder\": \"5af3736b34967c7736a5bd33\",\r\n    \"globalStepDelay\": 250,\r\n    \"httpHeaders\": [],\r\n    \"language\": null,\r\n    \"maxAjaxDelay\": 10000,\r\n    \"maxConcurrentTests\": 0,\r\n    \"maxWaitDelay\": 15000,\r\n    \"name\": \"Smoke Tests (Copy)\",\r\n    \"notifications\": {},\r\n    \"notificationsSuite\": {},\r\n    \"organization\": {\r\n      \"_id\": \"5a1b419ae40144279f9ac680\",\r\n      \"name\": \"Ghost Inspector\"\r\n    },\r\n    \"persistVariables\": false,\r\n    \"publicStatusEnabled\": false,\r\n    \"region\": \"us-east-1\",\r\n    \"screenshotCompareEnabled\": false,\r\n    \"screenshotCompareThreshold\": 0.1,\r\n    \"startUrl\": \"\",\r\n    \"testCount\": 1,\r\n    \"testFrequency\": 0,\r\n    \"testFrequencyAdvanced\": [],\r\n    \"user\": {\r\n      \"_id\": \"55b2accc4f66690c07294201\",\r\n      \"firstName\": \"Justin\",\r\n      \"lastName\": \"Klemm\"\r\n    },\r\n    \"variables\": [],\r\n    \"viewportSize\": {\r\n      \"height\": 768,\r\n      \"width\": 1024\r\n    }\r\n  }\r\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Duplicate Suite Post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/suites/{{suiteId}}/duplicate/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"suites",
+								"{{suiteId}}",
+								"duplicate",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "Duplicate a suite and return the new suite.\r\n\r\nexample Response\r\n{\r\n  \"code\": \"SUCCESS\",\r\n  \"data\": {\r\n    \"_id\": \"5e2b860ed4c4051afbd22496\",\r\n    \"abortOnTestFailure\": false,\r\n    \"autoRetry\": false,\r\n    \"browser\": \"chrome\",\r\n    \"dateCreated\": \"2020-01-25T00:04:30.303Z\",\r\n    \"dateExecutionTriggered\": \"1970-01-01T00:00:00.000Z\",\r\n    \"disableVisuals\": false,\r\n    \"disallowInsecureCertificates\": false,\r\n    \"failOnJavaScriptError\": false,\r\n    \"finalDelay\": 0,\r\n    \"folder\": \"5af3736b34967c7736a5bd33\",\r\n    \"globalStepDelay\": 250,\r\n    \"httpHeaders\": [],\r\n    \"language\": null,\r\n    \"maxAjaxDelay\": 10000,\r\n    \"maxConcurrentTests\": 0,\r\n    \"maxWaitDelay\": 15000,\r\n    \"name\": \"Smoke Tests (Copy)\",\r\n    \"notifications\": {},\r\n    \"notificationsSuite\": {},\r\n    \"organization\": {\r\n      \"_id\": \"5a1b419ae40144279f9ac680\",\r\n      \"name\": \"Ghost Inspector\"\r\n    },\r\n    \"persistVariables\": false,\r\n    \"publicStatusEnabled\": false,\r\n    \"region\": \"us-east-1\",\r\n    \"screenshotCompareEnabled\": false,\r\n    \"screenshotCompareThreshold\": 0.1,\r\n    \"startUrl\": \"\",\r\n    \"testCount\": 1,\r\n    \"testFrequency\": 0,\r\n    \"testFrequencyAdvanced\": [],\r\n    \"user\": {\r\n      \"_id\": \"55b2accc4f66690c07294201\",\r\n      \"firstName\": \"Justin\",\r\n      \"lastName\": \"Klemm\"\r\n    },\r\n    \"variables\": [],\r\n    \"viewportSize\": {\r\n      \"height\": 768,\r\n      \"width\": 1024\r\n    }\r\n  }\r\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Import Test",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/suites/{{suiteId}}/import-test/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"suites",
+								"{{suiteId}}",
+								"import-test",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "Import a test in Ghost Inspector JSON or Selenium HTML format and return the new test.\r\n\r\nRequest Example using cURL\r\n\r\nPOST with JSON file:\r\ncurl -X POST -H \"Content-Type: application/json\" -d @test.json \"https://api.ghostinspector.com/v1/suites/<suiteId>/import-test/?apiKey=<apiKey>\"\r\n\r\nPOST with HTML file:\r\ncurl -F \"apiKey=<key>\" -F \"dataFile=@test.html\" https://api.ghostinspector.com/v1/suites/<suiteId>/import-test/\r\n\r\nexample Response\r\n{\r\n  \"code\": \"SUCCESS\",\r\n  \"data\": {\r\n    \"_id\": \"5e2b889bd4c4051afbd2249b\",\r\n    \"autoRetry\": null,\r\n    \"browser\": null,\r\n    \"dateCreated\": \"1970-01-01T00:00:00.000Z\",\r\n    \"dateExecutionFinished\": \"1970-01-01T00:00:00.000Z\",\r\n    \"dateExecutionStarted\": \"1970-01-01T00:00:00.000Z\",\r\n    \"dateExecutionTriggered\": \"1970-01-01T00:00:00.000Z\",\r\n    \"dateUpdated\": \"2020-01-25T00:15:23.670Z\",\r\n    \"details\": \"This is a simple test that will log into the dashboard and assert that the widgets are showing up properly.\",\r\n    \"disableVisuals\": null,\r\n    \"disallowInsecureCertificates\": null,\r\n    \"failOnJavaScriptError\": null,\r\n    \"filters\": [],\r\n    \"finalDelay\": null,\r\n    \"globalStepDelay\": null,\r\n    \"httpHeaders\": [],\r\n    \"language\": null,\r\n    \"links\": [],\r\n    \"maxAjaxDelay\": null,\r\n    \"maxWaitDelay\": null,\r\n    \"name\": \"Login and Check Dashboard\",\r\n    \"notifications\": {\r\n      \"5b1e914a3bad610fa4a8fa8b\": {\r\n        \"enabled\": false\r\n      },\r\n      \"email\": {\r\n        \"enabled\": false\r\n      },\r\n      \"webhooks\": {\r\n        \"enabled\": true,\r\n        \"options\": {\r\n          \"urls\": [\r\n            {\r\n              \"condition\": null,\r\n              \"url\": \"http://requestbin.net/r/19hsp471\"\r\n            }\r\n          ]\r\n        }\r\n      }\r\n    },\r\n    \"organization\": {},\r\n    \"passing\": null,\r\n    \"publicStatusEnabled\": true,\r\n    \"region\": null,\r\n    \"screenshotCompareEnabled\": true,\r\n    \"screenshotComparePassing\": null,\r\n    \"screenshotCompareThreshold\": 0.01,\r\n    \"startUrl\": \"https://ghostinspector.com\",\r\n    \"steps\": [\r\n      {\r\n        \"command\": \"click\",\r\n        \"condition\": null,\r\n        \"optional\": false,\r\n        \"private\": false,\r\n        \"sequence\": 0,\r\n        \"target\": \".site-logo a\",\r\n        \"value\": \"\",\r\n        \"variableName\": \"\"\r\n      },\r\n      {\r\n        \"command\": \"open\",\r\n        \"condition\": null,\r\n        \"optional\": false,\r\n        \"private\": false,\r\n        \"sequence\": 1,\r\n        \"target\": \"\",\r\n        \"value\": \"/docs/\",\r\n        \"variableName\": \"\"\r\n      }\r\n    ],\r\n    \"suite\": {},\r\n    \"testFrequency\": 0,\r\n    \"testFrequencyAdvanced\": [],\r\n    \"user\": \"55b2accc4f66690c07294201\",\r\n    \"viewportSize\": null\r\n  }\r\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "List Suite Tests",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/suites/{{suiteId}}/tests/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"suites",
+								"{{suiteId}}",
+								"tests",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "Fetch an array of all the tests in a suite.\r\n\r\n\r\n\r\nexample Response\r\n{\r\n  \"code\": \"SUCCESS\",\r\n  \"data\": [\r\n    {\r\n      \"_id\": \"5e2a0b342d0f5947444c31fc\",\r\n      \"autoRetry\": null,\r\n      \"browser\": null,\r\n      \"dataSource\": null,\r\n      \"dateCreated\": \"2020-01-23T21:08:04.664Z\",\r\n      \"dateExecutionFinished\": \"2020-01-25T00:01:07.629Z\",\r\n      \"dateExecutionStarted\": \"2020-01-25T00:00:59.598Z\",\r\n      \"dateUpdated\": \"2020-01-25T00:00:47.041Z\",\r\n      \"details\": \"This is a simple test that will log into the dashboard and assert that the widgets are showing up properly.\",\r\n      \"disableVisuals\": null,\r\n      \"disallowInsecureCertificates\": null,\r\n      \"failOnJavaScriptError\": null,\r\n      \"finalDelay\": null,\r\n      \"globalStepDelay\": null,\r\n      \"httpHeaders\": [],\r\n      \"language\": null,\r\n      \"links\": [],\r\n      \"maxAjaxDelay\": null,\r\n      \"maxWaitDelay\": null,\r\n      \"name\": \"Login and Check Dashboard\",\r\n      \"organization\": {\r\n        \"_id\": \"5a1b419ae40144279f9ac680\",\r\n        \"name\": \"Ghost Inspector\"\r\n      },\r\n      \"passing\": true,\r\n      \"publicStatusEnabled\": true,\r\n      \"region\": null,\r\n      \"screenshotCompareEnabled\": true,\r\n      \"screenshotComparePassing\": true,\r\n      \"screenshotCompareThreshold\": 0.01,\r\n      \"startUrl\": \"https://ghostinspector.com\",\r\n      \"suite\": {\r\n        \"_id\": \"5a1e1b90154014760af39ef5\",\r\n        \"name\": \"Smoke Tests\"\r\n      },\r\n      \"testFrequency\": 0,\r\n      \"testFrequencyAdvanced\": [],\r\n      \"viewportSize\": null\r\n    }\r\n  ]\r\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "List Suite Results",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/suites/{{suiteId}}/results/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"suites",
+								"{{suiteId}}",
+								"results",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "Fetch an array of suite results for a suite.\r\n\r\nParameters\r\napiKey\r\nYour API key provided in your account\r\nsuiteId\r\nThe ID of the suite containing the results\r\ncount\r\nThe number of results to return (default 10, maximum 50)\r\noffset\r\nThe number of results to offset the returned set by (default 0)\r\n\r\nexample Response {\r\n  \"code\": \"SUCCESS\",\r\n  \"data\": [\r\n    {\r\n      \"_id\": \"5e2b7924854c611834aa6cf6\",\r\n      \"commentCount\": 0,\r\n      \"comments\": [],\r\n      \"countFailing\": 0,\r\n      \"countPassing\": 1,\r\n      \"countScreenshotCompareFailing\": 0,\r\n      \"countScreenshotComparePassing\": 1,\r\n      \"countScreenshotCompareUnknown\": 0,\r\n      \"countUnknown\": 0,\r\n      \"dateCreated\": \"2020-01-24T23:09:24.477Z\",\r\n      \"dateExecutionFinished\": \"2020-01-24T23:11:39.548Z\",\r\n      \"dateExecutionStarted\": \"2020-01-24T23:09:24.477Z\",\r\n      \"executionTime\": 135071,\r\n      \"name\": \"Smoke Tests\",\r\n      \"passing\": true,\r\n      \"screenshotComparePassing\": true,\r\n      \"startUrl\": \"\",\r\n      \"suite\": {\r\n        \"_id\": \"5a1e1b90154014760af39ef5\",\r\n        \"name\": \"Smoke Tests\",\r\n        \"organization\": \"5a1b419ae40144279f9ac680\"\r\n      },\r\n      \"user\": {\r\n        \"_id\": \"55b2accc4f66690c07294201\",\r\n        \"name\": \"Justin Klemm\"\r\n      }\r\n    },\r\n    {\r\n      \"_id\": \"5e2b8538d4c4051afbd22492\",\r\n      \"commentCount\": 0,\r\n      \"comments\": [],\r\n      \"countFailing\": 0,\r\n      \"countPassing\": 1,\r\n      \"countScreenshotCompareFailing\": 0,\r\n      \"countScreenshotComparePassing\": 1,\r\n      \"countScreenshotCompareUnknown\": 0,\r\n      \"countUnknown\": 0,\r\n      \"dateCreated\": \"2020-01-25T00:00:56.865Z\",\r\n      \"dateExecutionFinished\": \"2020-01-25T00:01:11.958Z\",\r\n      \"dateExecutionStarted\": \"2020-01-25T00:00:56.865Z\",\r\n      \"executionTime\": 15093,\r\n      \"name\": \"Smoke Tests\",\r\n      \"passing\": true,\r\n      \"screenshotComparePassing\": true,\r\n      \"startUrl\": \"\",\r\n      \"suite\": {\r\n        \"_id\": \"5a1e1b90154014760af39ef5\",\r\n        \"name\": \"Smoke Tests\",\r\n        \"organization\": \"5a1b419ae40144279f9ac680\"\r\n      },\r\n      \"user\": {\r\n        \"_id\": \"55b2accc4f66690c07294201\",\r\n        \"name\": \"Justin Klemm\"\r\n      }\r\n    }\r\n  ]\r\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "List Suite Results CSV",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/suites/{{suiteId}}/results/csv/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"suites",
+								"{{suiteId}}",
+								"results",
+								"csv",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "Fetch a CSV formatted export of suite results for a suite. Results are returned in reverse chronological order (newest first).\r\n\r\nParameters\r\napiKey\r\nYour API key provided in your account\r\nsuiteId\r\nThe ID of the suite containing the results\r\ncount\r\nThe number of results to return (default 10, maximum 50)\r\noffset\r\nThe number of results to offset the returned set by (default 0)\r\n\r\nexample Response\r\nSuite Result ID,Suite Result URL,Name,Start URL,Tests Passed,Screenshots Passed,Tests Passing,Tests Failing,Test Unknown,Screenshots Passing,Screenshots Failing,Screenshots Unknown,Duration,Date Triggered,Date Started,Date Completed\r\n5ec56cab7295aa759378d48f,https://app.ghostinspector.com/suite-results/5ec56cab7295aa759378d48f,Scheduler Testing,undefined,true,false,2,0,0,0,1,1,25.118,2020-05-20T17:45:15.139Z,2020-05-20T17:45:15.152Z,2020-05-20T17:45:40.270Z\r\n5ec56c337295aa759378d48b,https://app.ghostinspector.com/suite-results/5ec56c337295aa759378d48b,Scheduler Testing,undefined,true,false,2,0,0,0,1,1,30.15,2020-05-20T17:43:15.186Z,2020-05-20T17:43:15.210Z,2020-05-20T17:43:45.360Z"
+					},
+					"response": []
+				},
+				{
+					"name": "Download Suite Tests JSON",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/suites/{{suiteId}}/export/json/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"suites",
+								"{{suiteId}}",
+								"export",
+								"json",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "Download a zip file of all tests in Ghost Inspector format (.json).\r\n\r\nResponse\r\n[ Zip file containing all tests in Ghost Inspector JSON format will be returned ]"
+					},
+					"response": []
+				},
+				{
+					"name": "Download Suite Tests side",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/suites/{{suiteId}}/export/selenium-side/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"suites",
+								"{{suiteId}}",
+								"export",
+								"selenium-side",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "Download a JSON file of all tests in Selenium IDE format (.side).\r\n\r\nsample Response\r\n{\r\n  \"id\": \"ce572f2a-8e4f-4a1e-8f69-9e3de21d2350\",\r\n  \"version\": \"1.1\",\r\n  \"name\": \"Sample Suite\",\r\n  \"url\": \"\",\r\n  \"tests\": [\r\n      {\r\n      \"id\": \"9b449d9b-28f1-4106-8aae-b1e4c8853626\",\r\n      \"name\": \"Test #1\",\r\n      \"commands\": [\r\n          {\r\n          \"command\": \"open\",\r\n          \"target\": \"https://ghostinspector.com/\",\r\n          \"value\": \"\"\r\n          },\r\n          {\r\n          \"command\": \"setWindowSize\",\r\n          \"target\": \"1024x768\",\r\n          \"value\": \"\"\r\n          }\r\n      ]\r\n      },\r\n      {\r\n      \"id\": \"a727f3c0-57a1-4d22-8097-54ab34288249\",\r\n      \"name\": \"Test #2\",\r\n      \"commands\": [\r\n          {\r\n          \"command\": \"open\",\r\n          \"target\": \"https://ghostinspector.com\",\r\n          \"value\": \"\"\r\n          },\r\n          {\r\n          \"command\": \"setWindowSize\",\r\n          \"target\": \"1024x768\",\r\n          \"value\": \"\"\r\n          }\r\n      ]\r\n      }\r\n  ],\r\n  \"suites\": [\r\n      {\r\n      \"id\": \"36f02748-d241-4da4-9382-a8b4a438b262\",\r\n      \"name\": \"Sample Suite\",\r\n      \"persistSession\": false,\r\n      \"parallel\": false,\r\n      \"timeout\": 600,\r\n      \"tests\": [\r\n          \"9b449d9b-28f1-4106-8aae-b1e4c8853626\",\r\n          \"a727f3c0-57a1-4d22-8097-54ab34288249\"\r\n      ]\r\n      }\r\n  ],\r\n  \"plugins\": []\r\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Download Suite Tests HTML",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/suites/{{suiteId}}/export/selenium-html/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"suites",
+								"{{suiteId}}",
+								"export",
+								"selenium-html",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "Download a zip file of all tests in Selenium IDE format (.html).\r\n\r\nResponse\r\n[ Zip file containing all tests in Selenium HTML format will be returned ]"
+					},
+					"response": []
+				},
+				{
+					"name": "Suite Status Badges",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/suites/{{suiteId}}/status-badge",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"suites",
+								"{{suiteId}}",
+								"status-badge"
+							]
+						},
+						"description": "Note: Status badges are disabled by default and can be enabled under Suite Settings > Details > Enable Status Badge.\r\n\r\nReal-time embeddable status badges for your suite. Will return the appropriate status badge image based on the current status of your last suite result.\r\n\r\n\r\nStatuses\r\nPassing\r\n All tests from the last completed run of this suite passed.\r\nPartially Failing\r\n The last completed run of this suite had partial test failures.\r\nFailing\r\n All tests from the last completed run of this suite failed.\r\nRunning\r\n Suite execution is in progress.\r\nUnknown\r\n The suite has no previous execution or the last execution was cancelled.\r\nScreenshot Compare\r\n The screenshot comparisons for this suite are passing.\r\n\r\n\r\nExample usage\r\n<img src=\"https://api.ghostinspector.com/v1/suites/<suiteId>/status-badge\" title=\"My suite status\">"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Tests",
+			"item": [
+				{
+					"name": "List Tests",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/tests/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"tests",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "Fetch an array of all the tests in your account.\r\n\r\nexample Response\r\n{\r\n  \"code\": \"SUCCESS\",\r\n  \"data\": [\r\n    {\r\n      \"_id\": \"5db700c6881b5f7978697da9\",\r\n      \"autoRetry\": null,\r\n      \"browser\": null,\r\n      \"dateCreated\": \"2019-10-28T14:52:54.363Z\",\r\n      \"dateExecutionFinished\": \"2020-01-24T20:06:28.041Z\",\r\n      \"dateExecutionStarted\": \"2020-01-24T20:06:10.831Z\",\r\n      \"dateUpdated\": \"2019-10-28T18:02:43.940Z\",\r\n      \"disableVisuals\": true,\r\n      \"failOnJavaScriptError\": null,\r\n      \"finalDelay\": null,\r\n      \"globalStepDelay\": null,\r\n      \"httpHeaders\": [],\r\n      \"links\": [],\r\n      \"maxAjaxDelay\": null,\r\n      \"maxWaitDelay\": 5000,\r\n      \"name\": \"Multiple Targets\",\r\n      \"organization\": {\r\n        \"_id\": \"5a1b419ae40144279f9ac680\",\r\n        \"name\": \"Ghost Inspector\"\r\n      },\r\n      \"passing\": true,\r\n      \"publicStatusEnabled\": false,\r\n      \"region\": null,\r\n      \"screenshotCompareEnabled\": null,\r\n      \"screenshotComparePassing\": null,\r\n      \"screenshotCompareThreshold\": 0.1,\r\n      \"startUrl\": \"https://ghostinspector.com/demo/\",\r\n      \"suite\": {\r\n        \"_id\": \"5a1e1b90154014760af39ef5\",\r\n        \"name\": \"Smoke Tests\"\r\n      },\r\n      \"testFrequency\": 0,\r\n      \"testFrequencyAdvanced\": [],\r\n      \"viewportSize\": null\r\n    },\r\n    {\r\n      \"_id\": \"5e2a0b342d0f5947444c31fc\",\r\n      \"autoRetry\": null,\r\n      \"browser\": null,\r\n      \"dataSource\": null,\r\n      \"dateCreated\": \"2020-01-23T21:08:04.664Z\",\r\n      \"dateExecutionFinished\": \"2020-01-24T21:11:03.194Z\",\r\n      \"dateExecutionStarted\": \"2020-01-24T21:10:56.108Z\",\r\n      \"dateUpdated\": \"2020-01-24T21:09:24.948Z\",\r\n      \"details\": \"This is a simple test that will log into the dashboard and assert that the widgets are showing up properly.\",\r\n      \"disableVisuals\": null,\r\n      \"disallowInsecureCertificates\": null,\r\n      \"failOnJavaScriptError\": null,\r\n      \"finalDelay\": null,\r\n      \"globalStepDelay\": null,\r\n      \"httpHeaders\": [],\r\n      \"language\": null,\r\n      \"links\": [],\r\n      \"maxAjaxDelay\": null,\r\n      \"maxWaitDelay\": null,\r\n      \"name\": \"Login and Check Dashboard\",\r\n      \"organization\": {\r\n        \"_id\": \"5a1b419ae40144279f9ac680\",\r\n        \"name\": \"Ghost Inspector\"\r\n      },\r\n      \"passing\": true,\r\n      \"publicStatusEnabled\": true,\r\n      \"region\": null,\r\n      \"screenshotCompareEnabled\": true,\r\n      \"screenshotComparePassing\": true,\r\n      \"screenshotCompareThreshold\": 0.01,\r\n      \"startUrl\": \"https://ghostinspector.com\",\r\n      \"suite\": {\r\n        \"_id\": \"5a1e1b90154014760af39ef5\",\r\n        \"name\": \"Smoke Tests\"\r\n      },\r\n      \"testFrequency\": 0,\r\n      \"testFrequencyAdvanced\": [],\r\n      \"viewportSize\": null\r\n    }\r\n  ]\r\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Test",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/tests/{{testId}}/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"tests",
+								"{{testId}}",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "Fetch a single test\r\n\r\nexample Response\r\n{\r\n  \"code\": \"SUCCESS\",\r\n  \"data\": {\r\n    \"_id\": \"5e2a0b342d0f5947444c31fc\",\r\n    \"autoRetry\": null,\r\n    \"browser\": null,\r\n    \"dataSource\": null,\r\n    \"dateCreated\": \"2020-01-23T21:08:04.664Z\",\r\n    \"dateExecutionFinished\": \"2020-01-24T21:11:03.194Z\",\r\n    \"dateExecutionStarted\": \"2020-01-24T21:10:56.108Z\",\r\n    \"dateUpdated\": \"2020-01-24T21:09:24.948Z\",\r\n    \"details\": \"This is a simple test that will log into the dashboard and assert that the widgets are showing up properly.\",\r\n    \"disableVisuals\": null,\r\n    \"disallowInsecureCertificates\": null,\r\n    \"failOnJavaScriptError\": null,\r\n    \"filters\": [],\r\n    \"finalDelay\": null,\r\n    \"globalStepDelay\": null,\r\n    \"httpHeaders\": [],\r\n    \"language\": null,\r\n    \"links\": [],\r\n    \"maxAjaxDelay\": null,\r\n    \"maxWaitDelay\": null,\r\n    \"name\": \"Login and Check Dashboard\",\r\n    \"organization\": {\r\n      \"_id\": \"5a1b419ae40144279f9ac680\",\r\n      \"name\": \"Ghost Inspector\"\r\n    },\r\n    \"passing\": true,\r\n    \"publicStatusEnabled\": true,\r\n    \"region\": null,\r\n    \"screenshotCompareEnabled\": true,\r\n    \"screenshotComparePassing\": true,\r\n    \"screenshotCompareThreshold\": 0.01,\r\n    \"startUrl\": \"https://ghostinspector.com\",\r\n    \"steps\": [\r\n      {\r\n        \"_id\": \"5e2b5ce5854c611834aa6cd2\",\r\n        \"command\": \"click\",\r\n        \"condition\": {\r\n          \"statement\": \"return 2 + 2 === 4;\"\r\n        },\r\n        \"optional\": false,\r\n        \"private\": false,\r\n        \"sequence\": 0,\r\n        \"target\": \".site-logo a\",\r\n        \"value\": \"\",\r\n        \"variableName\": \"\"\r\n      },\r\n      {\r\n        \"_id\": \"5e2b5ce5854c611834aa6cd1\",\r\n        \"command\": \"assertTextPresent\",\r\n        \"condition\": null,\r\n        \"optional\": false,\r\n        \"private\": false,\r\n        \"sequence\": 1,\r\n        \"target\": [\r\n          {\r\n            \"selector\": \"h1\"\r\n          },\r\n          {\r\n            \"selector\": \".subhead\"\r\n          }\r\n        ],\r\n        \"value\": \"Automated\",\r\n        \"variableName\": \"\"\r\n      }\r\n    ],\r\n    \"suite\": {\r\n      \"_id\": \"5a1e1b90154014760af39ef5\",\r\n      \"name\": \"Smoke Tests\"\r\n    },\r\n    \"testFrequency\": 0,\r\n    \"testFrequencyAdvanced\": [],\r\n    \"viewportSize\": null\r\n  }\r\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Test",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/tests/{{testId}}/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"tests",
+								"{{testId}}",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "Update a test and return the updated test.\r\n\r\n\r\nRequest Example using cURL\r\n\r\nPOST Request with JSON body:\r\ncurl -H 'Content-Type: application/json' -X POST -d '{\"name\": \"Login and Check Dashboard (updated)\"}' 'https://api.ghostinspector.com/v1/tests/<testId>/?apiKey=<apiKey>'\r\n\r\n\r\nexample Response\r\n{\r\n    \"code\": \"SUCCESS\",\r\n    \"data\": {\r\n      \"_id\": \"5e2a0b342d0f5947444c31fc\",\r\n      \"autoRetry\": null,\r\n      \"browser\": null,\r\n      \"dataSource\": null,\r\n      \"dateCreated\": \"2020-01-23T21:08:04.664Z\",\r\n      \"dateExecutionFinished\": \"2020-01-24T21:11:03.194Z\",\r\n      \"dateExecutionStarted\": \"2020-01-24T21:10:56.108Z\",\r\n      \"dateUpdated\": \"2020-05-06T21:09:24.948Z\",\r\n      \"details\": \"This is a simple test that will log into the dashboard and assert that the widgets are showing up properly.\",\r\n      \"disableVisuals\": null,\r\n      \"disallowInsecureCertificates\": null,\r\n      \"failOnJavaScriptError\": null,\r\n      \"filters\": [],\r\n      \"finalDelay\": null,\r\n      \"globalStepDelay\": null,\r\n      \"httpHeaders\": [],\r\n      \"language\": null,\r\n      \"links\": [],\r\n      \"maxAjaxDelay\": null,\r\n      \"maxWaitDelay\": null,\r\n      \"name\": \"Login and Check Dashboard (updated)\",\r\n      \"organization\": {\r\n        \"_id\": \"5a1b419ae40144279f9ac680\",\r\n        \"name\": \"Ghost Inspector\"\r\n      },\r\n      \"passing\": true,\r\n      \"publicStatusEnabled\": true,\r\n      \"region\": null,\r\n      \"screenshotCompareEnabled\": true,\r\n      \"screenshotComparePassing\": true,\r\n      \"screenshotCompareThreshold\": 0.01,\r\n      \"startUrl\": \"https://ghostinspector.com\",\r\n      \"steps\": [\r\n        {\r\n          \"_id\": \"5e2b5ce5854c611834aa6cd2\",\r\n          \"command\": \"click\",\r\n          \"condition\": {\r\n            \"statement\": \"return 2 + 2 === 4;\"\r\n          },\r\n          \"optional\": false,\r\n          \"private\": false,\r\n          \"sequence\": 0,\r\n          \"target\": \".site-logo a\",\r\n          \"value\": \"\",\r\n          \"variableName\": \"\"\r\n        },\r\n        {\r\n          \"_id\": \"5e2b5ce5854c611834aa6cd1\",\r\n          \"command\": \"assertTextPresent\",\r\n          \"condition\": null,\r\n          \"optional\": false,\r\n          \"private\": false,\r\n          \"sequence\": 1,\r\n          \"target\": [\r\n          {\r\n            \"selector\": \"h1\"\r\n          },\r\n          {\r\n            \"selector\": \".subhead\"\r\n          }\r\n        ],\r\n          \"value\": \"Automated\",\r\n          \"variableName\": \"\"\r\n        }\r\n      ],\r\n      \"suite\": {\r\n        \"_id\": \"5a1e1b90154014760af39ef5\",\r\n        \"name\": \"Smoke Tests\"\r\n      },\r\n      \"testFrequency\": 0,\r\n      \"testFrequencyAdvanced\": [],\r\n      \"viewportSize\": null\r\n    }\r\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Test",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/tests/{{testId}}/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"tests",
+								"{{testId}}",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "Delete a test.\r\n\r\nResponse\r\n{\r\n    \"code\": \"SUCCESS\",\r\n    \"data\": true\r\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Execute Test",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/tests/{{testId}}/execute/?apiKey={{apiKey}}&startUrl={{startUrl}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"tests",
+								"{{testId}}",
+								"execute",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								},
+								{
+									"key": "startUrl",
+									"value": "{{startUrl}}"
+								}
+							]
+						},
+						"description": "Note: Test are executed in real time so this request can take some time to return. We’d suggest programming your request to deal with response times of up to 11 minutes. Tests are currently limited to 10 minutes of run time.\r\n\r\nParameters\r\n\r\napiKey\r\nYour API key provided in your account\r\ntestId\r\nThe ID of the test to execute\r\nstartUrl\r\n(Optional) Alternate start URL to use for this execution only\r\nbrowser\r\n(Optional) Alternate browser to use for this execution. The following options are available: chrome (Latest version), chrome-<version> (Specific version of Chrome, for example chrome-83), firefox (Latest version), firefox-<version> (Specific version of Firefox, for example firefox-77).\r\nuserAgent\r\n(Optional) Alternate user agent to use for this execution only\r\nregion\r\n(Optional) Geo-location for test execution. The following options are available: us-east-1 (default), us-west-1, ca-central-1, eu-central-1, eu-west-1, eu-west-2, eu-west-3, eu-north-1, me-south-1, ap-east-1, ap-northeast-1, ap-northeast-2, ap-southeast-1, ap-southeast-2, ap-south-1, sa-east-1\r\nhttpAuthUsername\r\n(Optional) Alternate HTTP authentication username to use for this execution only\r\nhttpAuthPassword\r\n(Optional) Alternate HTTP authentication password to use for this execution only\r\nwebhook\r\n(Optional) An escaped URL (or array of URLs) added to the webhooks list for this execution only\r\ndisableNotifications\r\n(Optional) Use 1 to disable (or 0 to enable) all notifications for this execution only\r\nimmediate\r\n(Optional) Use 1 to initiate the execution, then immediate return a response (without results)\r\ndataFile\r\n(Optional) A CSV file containing a row of variable values for each test run as outlined in our data-driven testing section. A POST request must be used when sending this file. When included, an array of test results will be returned, instead of a single result.\r\ndisableVisuals\r\n(Optional) Use 1 to disable (or 0 to enable) capturing screenshots and videos for this execution only\r\nscreenshotCompareEnabled\r\n(Optional) Use 1 to enable (or 0 to disable) screenshot comparison for this execution only\r\nscreenshotCompareThreshold\r\n(Optional) Use a number between 0.0 and 1.0 to set the tolerance when comparing screenshots (for this execution only). Will be ignored if screenshot comparison or visual capture is disabled.\r\nscreenshotExclusions\r\n(Optional) Use comma-separated CSS selectors. Elements matched by this CSS will be hidden before the screenshot is taken (for this execution only). Will be ignored if screenshot comparison or visual capture is disabled.\r\nscreenshotTarget\r\n(Optional) Use a CSS or XPath selector. Screenshot will be taken of the element specified instead of the whole page (for this execution only). Will be ignored if screenshot comparison or visual capture is disabled.\r\nviewport\r\n(Optional) Alternate screen size to use for this execution only. This should be a string formatted as {width}x{height}, for example 1024x768. Will be ignored if screenshot comparison or visual capture is disabled.\r\nslackChannel\r\n(Optional) Specify the Slack channel to notify for this test run. Note that the value must be myChannel or %23myChannel and not #myChannel.\r\n[varName]\r\n(Optional) Pass in custom variables for the test run that are accessible in your steps via {{varName}}. For example, including &firstName=Justin in the API call will create a {{firstName}} variable with the value Justin.\r\n\r\nRequest Examples using cURL\r\nNote: In all cases POST variables will override GET parameters.\r\nGET Request with Parameters:\r\ncurl \"https://api.ghostinspector.com/v1/tests/<testId>/execute/?apiKey=<key>&startUrl=<url>\"\r\n\r\nPOST Request with Parameters:\r\ncurl -d \"apiKey=<key>\" -d \"startUrl=<url>\" \"https://api.ghostinspector.com/v1/tests/<testId>/execute/\"\r\n\r\nPOST Request with JSON body:\r\ncurl -H 'Content-Type: application/json' -d '{\"apiKey\": \"<key>\", \"startUrl\": \"https://ghostinspector.com\", \"myVar\": 99}' 'https://api.ghostinspector.com/v1/tests/<testId>/execute/'\r\n\r\nPOST Multipart Form Request with CSV File:\r\ncurl -F \"apiKey=<key>\" -F \"dataFile=@vars.csv\" \"https://api.ghostinspector.com/v1/tests/<testId>/execute/\"\r\n\r\n\r\nexample Response\r\n{\r\n  \"code\": \"SUCCESS\",\r\n  \"data\": {\r\n    \"_id\": \"5e2b5d5dd4c4051afbd2248c\",\r\n    \"autoRetry\": false,\r\n    \"autoRetryTriggered\": false,\r\n    \"browser\": \"chrome-79\",\r\n    \"commentCount\": 0,\r\n    \"comments\": [],\r\n    \"console\": [\r\n      {\r\n        \"_id\": \"5e2b5d6765c1671520bc20d2\",\r\n        \"dateExecuted\": \"2020-01-24T21:10:58.098Z\",\r\n        \"error\": false,\r\n        \"output\": \"An  element was lazyloaded with loading=lazy, but had no dimensions specified. Specifying dimensions improves performance. See https://crbug.com/954323\",\r\n        \"url\": \"https://ghostinspector.com/\"\r\n      }\r\n    ],\r\n    \"dateCreated\": \"2020-01-24T21:10:53.194Z\",\r\n    \"dateExecutionFinished\": \"2020-01-24T21:11:03.194Z\",\r\n    \"dateExecutionStarted\": \"2020-01-24T21:10:56.108Z\",\r\n    \"disableVisuals\": false,\r\n    \"disallowInsecureCertificates\": false,\r\n    \"endUrl\": \"https://ghostinspector.com/\",\r\n    \"error\": {},\r\n    \"executionHost\": \"test001.ghostinspector.net\",\r\n    \"executionTime\": 7086,\r\n    \"extractions\": {},\r\n    \"failOnJavaScriptError\": false,\r\n    \"filters\": [],\r\n    \"finalDelay\": 0,\r\n    \"globalStepDelay\": 250,\r\n    \"language\": null,\r\n    \"maxAjaxDelay\": 10000,\r\n    \"maxWaitDelay\": 15000,\r\n    \"name\": \"Login and Check Dashboard\",\r\n    \"organization\": \"5a1b419ae40144279f9ac680\",\r\n    \"passing\": true,\r\n    \"region\": \"us-east-1\",\r\n    \"screenshot\": {\r\n      \"original\": {\r\n        \"defaultUrl\": \"https://ghostinspector-prod.s3.amazonaws.com/screenshots/4b362e32-0bae-44b5-a482-387f3a882ebf-original.png\",\r\n        \"dims\": {\r\n          \"h\": 3315,\r\n          \"w\": 1024\r\n        },\r\n        \"path\": \"screenshots/4b362e32-0bae-44b5-a482-387f3a882ebf-original.png\",\r\n        \"size\": 508453\r\n      },\r\n      \"small\": {\r\n        \"defaultUrl\": \"https://ghostinspector-prod.s3.amazonaws.com/screenshots/4b362e32-0bae-44b5-a482-387f3a882ebf-small.png\",\r\n        \"dims\": {\r\n          \"h\": 1036,\r\n          \"w\": 320\r\n        },\r\n        \"path\": \"screenshots/4b362e32-0bae-44b5-a482-387f3a882ebf-small.png\",\r\n        \"size\": 159382\r\n      }\r\n    },\r\n    \"screenshotCompareBaselineResult\": \"5e2b5d06854c611834aa6cd7\",\r\n    \"screenshotCompareDifference\": 0,\r\n    \"screenshotCompareEnabled\": true,\r\n    \"screenshotComparePassing\": true,\r\n    \"screenshotCompareThreshold\": 0.01,\r\n    \"startUrl\": \"https://ghostinspector.com\",\r\n    \"steps\": [\r\n      {\r\n        \"_id\": \"5e2b5d6965c1671520bc20d6\",\r\n        \"command\": \"click\",\r\n        \"condition\": {\r\n          \"statement\": \"return 2 + 2 === 4;\",\r\n          \"result\": true\r\n        },\r\n        \"dateExecuted\": \"2020-01-24T21:11:00.606Z\",\r\n        \"extra\": {\r\n          \"source\": {\r\n            \"sequence\": 0,\r\n            \"test\": \"5e2a0b342d0f5947444c31fc\"\r\n          }\r\n        },\r\n        \"notes\": \"\",\r\n        \"optional\": false,\r\n        \"passing\": true,\r\n        \"private\": false,\r\n        \"sequence\": 0,\r\n        \"target\": \".site-logo a\",\r\n        \"url\": \"https://ghostinspector.com/\",\r\n        \"value\": \"\",\r\n        \"variableName\": \"\"\r\n      },\r\n      {\r\n        \"_id\": \"5e2b5d6965c1671520bc20d7\",\r\n        \"command\": \"assertTextPresent\",\r\n        \"condition\": null,\r\n        \"dateExecuted\": \"2020-01-24T21:11:01.343Z\",\r\n        \"extra\": {\r\n          \"source\": {\r\n            \"sequence\": 1,\r\n            \"test\": \"5e2a0b342d0f5947444c31fc\"\r\n          }\r\n        },\r\n        \"notes\": \"\",\r\n        \"optional\": false,\r\n        \"passing\": true,\r\n        \"private\": false,\r\n        \"sequence\": 1,\r\n        \"target\": \"h1\",\r\n        \"url\": \"https://ghostinspector.com/\",\r\n        \"value\": \"Automated\",\r\n        \"variableName\": \"\"\r\n      }\r\n    ],\r\n    \"suiteResult\": null,\r\n    \"test\": {\r\n      \"_id\": \"5e2a0b342d0f5947444c31fc\",\r\n      \"name\": \"Login and Check Dashboard\",\r\n      \"organization\": \"5a1b419ae40144279f9ac680\",\r\n      \"suite\": \"5a1e1b90154014760af39ef5\"\r\n    },\r\n    \"urls\": [\r\n      \"https://ghostinspector.com\",\r\n      \"https://ghostinspector.com/\"\r\n    ],\r\n    \"user\": {\r\n      \"_id\": \"55b2accc4f66690c07294201\",\r\n      \"name\": \"Justin Klemm\"\r\n    },\r\n    \"uuid\": \"4b362e32-0bae-44b5-a482-387f3a882ebf\",\r\n    \"variables\": {\r\n      \"orgVar\": \"foo\"\r\n    },\r\n    \"video\": {\r\n      \"dims\": {\r\n        \"h\": 768,\r\n        \"w\": 1024\r\n      },\r\n      \"path\": \"videos/4b362e32-0bae-44b5-a482-387f3a882ebf.mp4\",\r\n      \"url\": \"https://ghostinspector-prod.s3.amazonaws.com/videos/4b362e32-0bae-44b5-a482-387f3a882ebf.mp4\"\r\n    },\r\n    \"viewportSize\": {\r\n      \"height\": 768,\r\n      \"width\": 1024\r\n    }\r\n  }\r\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Execute Test Post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/tests/{{testId}}/execute/?apiKey={{apiKey}}&startUrl={{startUrl}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"tests",
+								"{{testId}}",
+								"execute",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								},
+								{
+									"key": "startUrl",
+									"value": "{{startUrl}}"
+								}
+							]
+						},
+						"description": "Note: Test are executed in real time so this request can take some time to return. We’d suggest programming your request to deal with response times of up to 11 minutes. Tests are currently limited to 10 minutes of run time.\r\n\r\nParameters\r\n\r\napiKey\r\nYour API key provided in your account\r\ntestId\r\nThe ID of the test to execute\r\nstartUrl\r\n(Optional) Alternate start URL to use for this execution only\r\nbrowser\r\n(Optional) Alternate browser to use for this execution. The following options are available: chrome (Latest version), chrome-<version> (Specific version of Chrome, for example chrome-83), firefox (Latest version), firefox-<version> (Specific version of Firefox, for example firefox-77).\r\nuserAgent\r\n(Optional) Alternate user agent to use for this execution only\r\nregion\r\n(Optional) Geo-location for test execution. The following options are available: us-east-1 (default), us-west-1, ca-central-1, eu-central-1, eu-west-1, eu-west-2, eu-west-3, eu-north-1, me-south-1, ap-east-1, ap-northeast-1, ap-northeast-2, ap-southeast-1, ap-southeast-2, ap-south-1, sa-east-1\r\nhttpAuthUsername\r\n(Optional) Alternate HTTP authentication username to use for this execution only\r\nhttpAuthPassword\r\n(Optional) Alternate HTTP authentication password to use for this execution only\r\nwebhook\r\n(Optional) An escaped URL (or array of URLs) added to the webhooks list for this execution only\r\ndisableNotifications\r\n(Optional) Use 1 to disable (or 0 to enable) all notifications for this execution only\r\nimmediate\r\n(Optional) Use 1 to initiate the execution, then immediate return a response (without results)\r\ndataFile\r\n(Optional) A CSV file containing a row of variable values for each test run as outlined in our data-driven testing section. A POST request must be used when sending this file. When included, an array of test results will be returned, instead of a single result.\r\ndisableVisuals\r\n(Optional) Use 1 to disable (or 0 to enable) capturing screenshots and videos for this execution only\r\nscreenshotCompareEnabled\r\n(Optional) Use 1 to enable (or 0 to disable) screenshot comparison for this execution only\r\nscreenshotCompareThreshold\r\n(Optional) Use a number between 0.0 and 1.0 to set the tolerance when comparing screenshots (for this execution only). Will be ignored if screenshot comparison or visual capture is disabled.\r\nscreenshotExclusions\r\n(Optional) Use comma-separated CSS selectors. Elements matched by this CSS will be hidden before the screenshot is taken (for this execution only). Will be ignored if screenshot comparison or visual capture is disabled.\r\nscreenshotTarget\r\n(Optional) Use a CSS or XPath selector. Screenshot will be taken of the element specified instead of the whole page (for this execution only). Will be ignored if screenshot comparison or visual capture is disabled.\r\nviewport\r\n(Optional) Alternate screen size to use for this execution only. This should be a string formatted as {width}x{height}, for example 1024x768. Will be ignored if screenshot comparison or visual capture is disabled.\r\nslackChannel\r\n(Optional) Specify the Slack channel to notify for this test run. Note that the value must be myChannel or %23myChannel and not #myChannel.\r\n[varName]\r\n(Optional) Pass in custom variables for the test run that are accessible in your steps via {{varName}}. For example, including &firstName=Justin in the API call will create a {{firstName}} variable with the value Justin.\r\n\r\nRequest Examples using cURL\r\nNote: In all cases POST variables will override GET parameters.\r\nGET Request with Parameters:\r\ncurl \"https://api.ghostinspector.com/v1/tests/<testId>/execute/?apiKey=<key>&startUrl=<url>\"\r\n\r\nPOST Request with Parameters:\r\ncurl -d \"apiKey=<key>\" -d \"startUrl=<url>\" \"https://api.ghostinspector.com/v1/tests/<testId>/execute/\"\r\n\r\nPOST Request with JSON body:\r\ncurl -H 'Content-Type: application/json' -d '{\"apiKey\": \"<key>\", \"startUrl\": \"https://ghostinspector.com\", \"myVar\": 99}' 'https://api.ghostinspector.com/v1/tests/<testId>/execute/'\r\n\r\nPOST Multipart Form Request with CSV File:\r\ncurl -F \"apiKey=<key>\" -F \"dataFile=@vars.csv\" \"https://api.ghostinspector.com/v1/tests/<testId>/execute/\"\r\n\r\n\r\nexample Response\r\n{\r\n  \"code\": \"SUCCESS\",\r\n  \"data\": {\r\n    \"_id\": \"5e2b5d5dd4c4051afbd2248c\",\r\n    \"autoRetry\": false,\r\n    \"autoRetryTriggered\": false,\r\n    \"browser\": \"chrome-79\",\r\n    \"commentCount\": 0,\r\n    \"comments\": [],\r\n    \"console\": [\r\n      {\r\n        \"_id\": \"5e2b5d6765c1671520bc20d2\",\r\n        \"dateExecuted\": \"2020-01-24T21:10:58.098Z\",\r\n        \"error\": false,\r\n        \"output\": \"An  element was lazyloaded with loading=lazy, but had no dimensions specified. Specifying dimensions improves performance. See https://crbug.com/954323\",\r\n        \"url\": \"https://ghostinspector.com/\"\r\n      }\r\n    ],\r\n    \"dateCreated\": \"2020-01-24T21:10:53.194Z\",\r\n    \"dateExecutionFinished\": \"2020-01-24T21:11:03.194Z\",\r\n    \"dateExecutionStarted\": \"2020-01-24T21:10:56.108Z\",\r\n    \"disableVisuals\": false,\r\n    \"disallowInsecureCertificates\": false,\r\n    \"endUrl\": \"https://ghostinspector.com/\",\r\n    \"error\": {},\r\n    \"executionHost\": \"test001.ghostinspector.net\",\r\n    \"executionTime\": 7086,\r\n    \"extractions\": {},\r\n    \"failOnJavaScriptError\": false,\r\n    \"filters\": [],\r\n    \"finalDelay\": 0,\r\n    \"globalStepDelay\": 250,\r\n    \"language\": null,\r\n    \"maxAjaxDelay\": 10000,\r\n    \"maxWaitDelay\": 15000,\r\n    \"name\": \"Login and Check Dashboard\",\r\n    \"organization\": \"5a1b419ae40144279f9ac680\",\r\n    \"passing\": true,\r\n    \"region\": \"us-east-1\",\r\n    \"screenshot\": {\r\n      \"original\": {\r\n        \"defaultUrl\": \"https://ghostinspector-prod.s3.amazonaws.com/screenshots/4b362e32-0bae-44b5-a482-387f3a882ebf-original.png\",\r\n        \"dims\": {\r\n          \"h\": 3315,\r\n          \"w\": 1024\r\n        },\r\n        \"path\": \"screenshots/4b362e32-0bae-44b5-a482-387f3a882ebf-original.png\",\r\n        \"size\": 508453\r\n      },\r\n      \"small\": {\r\n        \"defaultUrl\": \"https://ghostinspector-prod.s3.amazonaws.com/screenshots/4b362e32-0bae-44b5-a482-387f3a882ebf-small.png\",\r\n        \"dims\": {\r\n          \"h\": 1036,\r\n          \"w\": 320\r\n        },\r\n        \"path\": \"screenshots/4b362e32-0bae-44b5-a482-387f3a882ebf-small.png\",\r\n        \"size\": 159382\r\n      }\r\n    },\r\n    \"screenshotCompareBaselineResult\": \"5e2b5d06854c611834aa6cd7\",\r\n    \"screenshotCompareDifference\": 0,\r\n    \"screenshotCompareEnabled\": true,\r\n    \"screenshotComparePassing\": true,\r\n    \"screenshotCompareThreshold\": 0.01,\r\n    \"startUrl\": \"https://ghostinspector.com\",\r\n    \"steps\": [\r\n      {\r\n        \"_id\": \"5e2b5d6965c1671520bc20d6\",\r\n        \"command\": \"click\",\r\n        \"condition\": {\r\n          \"statement\": \"return 2 + 2 === 4;\",\r\n          \"result\": true\r\n        },\r\n        \"dateExecuted\": \"2020-01-24T21:11:00.606Z\",\r\n        \"extra\": {\r\n          \"source\": {\r\n            \"sequence\": 0,\r\n            \"test\": \"5e2a0b342d0f5947444c31fc\"\r\n          }\r\n        },\r\n        \"notes\": \"\",\r\n        \"optional\": false,\r\n        \"passing\": true,\r\n        \"private\": false,\r\n        \"sequence\": 0,\r\n        \"target\": \".site-logo a\",\r\n        \"url\": \"https://ghostinspector.com/\",\r\n        \"value\": \"\",\r\n        \"variableName\": \"\"\r\n      },\r\n      {\r\n        \"_id\": \"5e2b5d6965c1671520bc20d7\",\r\n        \"command\": \"assertTextPresent\",\r\n        \"condition\": null,\r\n        \"dateExecuted\": \"2020-01-24T21:11:01.343Z\",\r\n        \"extra\": {\r\n          \"source\": {\r\n            \"sequence\": 1,\r\n            \"test\": \"5e2a0b342d0f5947444c31fc\"\r\n          }\r\n        },\r\n        \"notes\": \"\",\r\n        \"optional\": false,\r\n        \"passing\": true,\r\n        \"private\": false,\r\n        \"sequence\": 1,\r\n        \"target\": \"h1\",\r\n        \"url\": \"https://ghostinspector.com/\",\r\n        \"value\": \"Automated\",\r\n        \"variableName\": \"\"\r\n      }\r\n    ],\r\n    \"suiteResult\": null,\r\n    \"test\": {\r\n      \"_id\": \"5e2a0b342d0f5947444c31fc\",\r\n      \"name\": \"Login and Check Dashboard\",\r\n      \"organization\": \"5a1b419ae40144279f9ac680\",\r\n      \"suite\": \"5a1e1b90154014760af39ef5\"\r\n    },\r\n    \"urls\": [\r\n      \"https://ghostinspector.com\",\r\n      \"https://ghostinspector.com/\"\r\n    ],\r\n    \"user\": {\r\n      \"_id\": \"55b2accc4f66690c07294201\",\r\n      \"name\": \"Justin Klemm\"\r\n    },\r\n    \"uuid\": \"4b362e32-0bae-44b5-a482-387f3a882ebf\",\r\n    \"variables\": {\r\n      \"orgVar\": \"foo\"\r\n    },\r\n    \"video\": {\r\n      \"dims\": {\r\n        \"h\": 768,\r\n        \"w\": 1024\r\n      },\r\n      \"path\": \"videos/4b362e32-0bae-44b5-a482-387f3a882ebf.mp4\",\r\n      \"url\": \"https://ghostinspector-prod.s3.amazonaws.com/videos/4b362e32-0bae-44b5-a482-387f3a882ebf.mp4\"\r\n    },\r\n    \"viewportSize\": {\r\n      \"height\": 768,\r\n      \"width\": 1024\r\n    }\r\n  }\r\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Running",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/tests/{{testId}}/running/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"tests",
+								"{{testId}}",
+								"running",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "Fetch a list of the currently-executing results for this test and return the result.\r\n\r\nexample Response\r\n{\r\n  \"code\": \"SUCCESS\",\r\n  \"data\": [\r\n    {\r\n      \"_id\": \"5e2b6294854c611834aa6cde\",\r\n      \"autoRetry\": false,\r\n      \"autoRetryTriggered\": false,\r\n      \"browser\": \"chrome\",\r\n      \"commentCount\": 0,\r\n      \"comments\": [],\r\n      \"console\": [],\r\n      \"dateCreated\": \"2020-01-24T21:33:08.870Z\",\r\n      \"dateExecutionStarted\": \"2020-01-24T21:33:09.571Z\",\r\n      \"disableVisuals\": false,\r\n      \"disallowInsecureCertificates\": false,\r\n      \"endUrl\": \"\",\r\n      \"executionHost\": \"test001.ghostinspector.net\",\r\n      \"executionTime\": null,\r\n      \"failOnJavaScriptError\": false,\r\n      \"filters\": [],\r\n      \"finalDelay\": 0,\r\n      \"globalStepDelay\": 250,\r\n      \"language\": null,\r\n      \"maxAjaxDelay\": 10000,\r\n      \"maxWaitDelay\": 15000,\r\n      \"name\": \"Login and Check Dashboard\",\r\n      \"organization\": \"5a1b419ae40144279f9ac680\",\r\n      \"passing\": null,\r\n      \"region\": \"us-east-1\",\r\n      \"screenshotCompareBaselineResult\": null,\r\n      \"screenshotCompareDifference\": null,\r\n      \"screenshotCompareEnabled\": true,\r\n      \"screenshotComparePassing\": null,\r\n      \"screenshotCompareThreshold\": 0.01,\r\n      \"startUrl\": \"https://ghostinspector.com\",\r\n      \"steps\": [\r\n        {\r\n          \"_id\": \"5e2b5ce5854c611834aa6cd2\",\r\n          \"command\": \"click\",\r\n          \"condition\": {\r\n            \"statement\": \"return 2 + 2 === 4;\"\r\n          },\r\n          \"extra\": {\r\n            \"source\": {\r\n              \"sequence\": 0,\r\n              \"test\": \"5e2a0b342d0f5947444c31fc\"\r\n            }\r\n          },\r\n          \"notes\": \"\",\r\n          \"optional\": false,\r\n          \"passing\": null,\r\n          \"private\": false,\r\n          \"sequence\": 0,\r\n          \"target\": \".site-logo a\",\r\n          \"value\": \"\",\r\n          \"variableName\": \"\"\r\n        }\r\n        {\r\n          \"_id\": \"5e2b5ce5854c611834aa6cd1\",\r\n          \"command\": \"assertTextPresent\",\r\n          \"condition\": null,\r\n          \"extra\": {\r\n            \"source\": {\r\n              \"sequence\": 1,\r\n              \"test\": \"5e2a0b342d0f5947444c31fc\"\r\n            }\r\n          },\r\n          \"notes\": \"\",\r\n          \"optional\": false,\r\n          \"passing\": null,\r\n          \"private\": false,\r\n          \"sequence\": 1,\r\n          \"target\": \"h1\",\r\n          \"value\": \"Automated\",\r\n          \"variableName\": \"\"\r\n        }\r\n      ],\r\n      \"suiteResult\": null,\r\n      \"test\": {\r\n        \"_id\": \"5e2a0b342d0f5947444c31fc\",\r\n        \"name\": \"Login and Check Dashboard\",\r\n        \"organization\": \"5a1b419ae40144279f9ac680\",\r\n        \"suite\": \"5a1e1b90154014760af39ef5\"\r\n      },\r\n      \"urls\": [],\r\n      \"user\": {\r\n        \"_id\": \"55b2accc4f66690c07294201\",\r\n        \"name\": \"Justin Klemm\"\r\n      },\r\n      \"uuid\": \"6e930f8b-37f4-42e6-a4a1-11d85cf57fd0\",\r\n      \"viewportSize\": {\r\n        \"height\": 768,\r\n        \"width\": 1024\r\n      }\r\n    }\r\n  ]\r\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Running Post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/tests/{{testId}}/running/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"tests",
+								"{{testId}}",
+								"running",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "Fetch a list of the currently-executing results for this test and return the result.\r\n\r\nexample Response\r\n{\r\n  \"code\": \"SUCCESS\",\r\n  \"data\": [\r\n    {\r\n      \"_id\": \"5e2b6294854c611834aa6cde\",\r\n      \"autoRetry\": false,\r\n      \"autoRetryTriggered\": false,\r\n      \"browser\": \"chrome\",\r\n      \"commentCount\": 0,\r\n      \"comments\": [],\r\n      \"console\": [],\r\n      \"dateCreated\": \"2020-01-24T21:33:08.870Z\",\r\n      \"dateExecutionStarted\": \"2020-01-24T21:33:09.571Z\",\r\n      \"disableVisuals\": false,\r\n      \"disallowInsecureCertificates\": false,\r\n      \"endUrl\": \"\",\r\n      \"executionHost\": \"test001.ghostinspector.net\",\r\n      \"executionTime\": null,\r\n      \"failOnJavaScriptError\": false,\r\n      \"filters\": [],\r\n      \"finalDelay\": 0,\r\n      \"globalStepDelay\": 250,\r\n      \"language\": null,\r\n      \"maxAjaxDelay\": 10000,\r\n      \"maxWaitDelay\": 15000,\r\n      \"name\": \"Login and Check Dashboard\",\r\n      \"organization\": \"5a1b419ae40144279f9ac680\",\r\n      \"passing\": null,\r\n      \"region\": \"us-east-1\",\r\n      \"screenshotCompareBaselineResult\": null,\r\n      \"screenshotCompareDifference\": null,\r\n      \"screenshotCompareEnabled\": true,\r\n      \"screenshotComparePassing\": null,\r\n      \"screenshotCompareThreshold\": 0.01,\r\n      \"startUrl\": \"https://ghostinspector.com\",\r\n      \"steps\": [\r\n        {\r\n          \"_id\": \"5e2b5ce5854c611834aa6cd2\",\r\n          \"command\": \"click\",\r\n          \"condition\": {\r\n            \"statement\": \"return 2 + 2 === 4;\"\r\n          },\r\n          \"extra\": {\r\n            \"source\": {\r\n              \"sequence\": 0,\r\n              \"test\": \"5e2a0b342d0f5947444c31fc\"\r\n            }\r\n          },\r\n          \"notes\": \"\",\r\n          \"optional\": false,\r\n          \"passing\": null,\r\n          \"private\": false,\r\n          \"sequence\": 0,\r\n          \"target\": \".site-logo a\",\r\n          \"value\": \"\",\r\n          \"variableName\": \"\"\r\n        }\r\n        {\r\n          \"_id\": \"5e2b5ce5854c611834aa6cd1\",\r\n          \"command\": \"assertTextPresent\",\r\n          \"condition\": null,\r\n          \"extra\": {\r\n            \"source\": {\r\n              \"sequence\": 1,\r\n              \"test\": \"5e2a0b342d0f5947444c31fc\"\r\n            }\r\n          },\r\n          \"notes\": \"\",\r\n          \"optional\": false,\r\n          \"passing\": null,\r\n          \"private\": false,\r\n          \"sequence\": 1,\r\n          \"target\": \"h1\",\r\n          \"value\": \"Automated\",\r\n          \"variableName\": \"\"\r\n        }\r\n      ],\r\n      \"suiteResult\": null,\r\n      \"test\": {\r\n        \"_id\": \"5e2a0b342d0f5947444c31fc\",\r\n        \"name\": \"Login and Check Dashboard\",\r\n        \"organization\": \"5a1b419ae40144279f9ac680\",\r\n        \"suite\": \"5a1e1b90154014760af39ef5\"\r\n      },\r\n      \"urls\": [],\r\n      \"user\": {\r\n        \"_id\": \"55b2accc4f66690c07294201\",\r\n        \"name\": \"Justin Klemm\"\r\n      },\r\n      \"uuid\": \"6e930f8b-37f4-42e6-a4a1-11d85cf57fd0\",\r\n      \"viewportSize\": {\r\n        \"height\": 768,\r\n        \"width\": 1024\r\n      }\r\n    }\r\n  ]\r\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Accept Screenshot",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/tests/{{testId}}/accept-screenshot/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"tests",
+								"{{testId}}",
+								"accept-screenshot",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "Accept the current screenshot as the new baseline for this test.\r\n\r\nexample Response\r\n{\r\n  \"code\": \"SUCCESS\",\r\n  \"data\": {\r\n    \"_id\": \"5e2a0b342d0f5947444c31fc\",\r\n    \"autoRetry\": null,\r\n    \"browser\": null,\r\n    \"dateCreated\": \"2020-01-23T21:08:04.664Z\",\r\n    \"dateExecutionFinished\": \"2020-01-24T21:36:14.674Z\",\r\n    \"dateExecutionStarted\": \"2020-01-24T21:36:06.839Z\",\r\n    \"dateExecutionTriggered\": \"2020-01-24T21:36:04.072Z\",\r\n    \"dateUpdated\": \"2020-01-24T21:35:30.841Z\",\r\n    \"details\": \"This is a simple test that will log into the dashboard and assert that the widgets are showing up properly.\",\r\n    \"disableVisuals\": null,\r\n    \"disallowInsecureCertificates\": null,\r\n    \"failOnJavaScriptError\": null,\r\n    \"filters\": [],\r\n    \"finalDelay\": null,\r\n    \"globalStepDelay\": null,\r\n    \"httpHeaders\": [],\r\n    \"language\": null,\r\n    \"links\": [],\r\n    \"maxAjaxDelay\": null,\r\n    \"maxWaitDelay\": null,\r\n    \"name\": \"Login and Check Dashboard\",\r\n    \"organization\": {\r\n      \"_id\": \"5a1b419ae40144279f9ac680\",\r\n      \"name\": \"Ghost Inspector\"\r\n    },\r\n    \"passing\": true,\r\n    \"publicStatusEnabled\": true,\r\n    \"region\": null,\r\n    \"screenshotCompareEnabled\": true,\r\n    \"screenshotComparePassing\": true,\r\n    \"screenshotCompareThreshold\": 0.01,\r\n    \"startUrl\": \"https://ghostinspector.com\",\r\n    \"steps\": [\r\n      {\r\n        \"_id\": \"5e2b5ce5854c611834aa6cd2\",\r\n        \"command\": \"click\",\r\n        \"condition\": {\r\n          \"statement\": \"return 2 + 2 === 4;\"\r\n        },\r\n        \"optional\": false,\r\n        \"private\": false,\r\n        \"sequence\": 0,\r\n        \"target\": \".site-logo a\",\r\n        \"value\": \"\",\r\n        \"variableName\": \"\"\r\n      },\r\n      {\r\n        \"_id\": \"5e2b5ce5854c611834aa6cd1\",\r\n        \"command\": \"open\",\r\n        \"condition\": null,\r\n        \"optional\": false,\r\n        \"private\": false,\r\n        \"sequence\": 1,\r\n        \"target\": \"\",\r\n        \"value\": \"/docs/\",\r\n        \"variableName\": \"\"\r\n      }\r\n    ],\r\n    \"suite\": {\r\n      \"_id\": \"5a1e1b90154014760af39ef5\",\r\n      \"name\": \"Smoke Tests\"\r\n    },\r\n    \"testFrequency\": 0,\r\n    \"testFrequencyAdvanced\": [],\r\n    \"user\": {\r\n      \"_id\": \"55b2accc4f66690c07294201\",\r\n      \"firstName\": \"Justin\",\r\n      \"lastName\": \"Klemm\"\r\n    },\r\n    \"viewportSize\": null\r\n  }\r\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Accept Screenshot Post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/tests/{{testId}}/accept-screenshot/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"tests",
+								"{{testId}}",
+								"accept-screenshot",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "Accept the current screenshot as the new baseline for this test.\r\n\r\nexample Response\r\n{\r\n  \"code\": \"SUCCESS\",\r\n  \"data\": {\r\n    \"_id\": \"5e2a0b342d0f5947444c31fc\",\r\n    \"autoRetry\": null,\r\n    \"browser\": null,\r\n    \"dateCreated\": \"2020-01-23T21:08:04.664Z\",\r\n    \"dateExecutionFinished\": \"2020-01-24T21:36:14.674Z\",\r\n    \"dateExecutionStarted\": \"2020-01-24T21:36:06.839Z\",\r\n    \"dateExecutionTriggered\": \"2020-01-24T21:36:04.072Z\",\r\n    \"dateUpdated\": \"2020-01-24T21:35:30.841Z\",\r\n    \"details\": \"This is a simple test that will log into the dashboard and assert that the widgets are showing up properly.\",\r\n    \"disableVisuals\": null,\r\n    \"disallowInsecureCertificates\": null,\r\n    \"failOnJavaScriptError\": null,\r\n    \"filters\": [],\r\n    \"finalDelay\": null,\r\n    \"globalStepDelay\": null,\r\n    \"httpHeaders\": [],\r\n    \"language\": null,\r\n    \"links\": [],\r\n    \"maxAjaxDelay\": null,\r\n    \"maxWaitDelay\": null,\r\n    \"name\": \"Login and Check Dashboard\",\r\n    \"organization\": {\r\n      \"_id\": \"5a1b419ae40144279f9ac680\",\r\n      \"name\": \"Ghost Inspector\"\r\n    },\r\n    \"passing\": true,\r\n    \"publicStatusEnabled\": true,\r\n    \"region\": null,\r\n    \"screenshotCompareEnabled\": true,\r\n    \"screenshotComparePassing\": true,\r\n    \"screenshotCompareThreshold\": 0.01,\r\n    \"startUrl\": \"https://ghostinspector.com\",\r\n    \"steps\": [\r\n      {\r\n        \"_id\": \"5e2b5ce5854c611834aa6cd2\",\r\n        \"command\": \"click\",\r\n        \"condition\": {\r\n          \"statement\": \"return 2 + 2 === 4;\"\r\n        },\r\n        \"optional\": false,\r\n        \"private\": false,\r\n        \"sequence\": 0,\r\n        \"target\": \".site-logo a\",\r\n        \"value\": \"\",\r\n        \"variableName\": \"\"\r\n      },\r\n      {\r\n        \"_id\": \"5e2b5ce5854c611834aa6cd1\",\r\n        \"command\": \"open\",\r\n        \"condition\": null,\r\n        \"optional\": false,\r\n        \"private\": false,\r\n        \"sequence\": 1,\r\n        \"target\": \"\",\r\n        \"value\": \"/docs/\",\r\n        \"variableName\": \"\"\r\n      }\r\n    ],\r\n    \"suite\": {\r\n      \"_id\": \"5a1e1b90154014760af39ef5\",\r\n      \"name\": \"Smoke Tests\"\r\n    },\r\n    \"testFrequency\": 0,\r\n    \"testFrequencyAdvanced\": [],\r\n    \"user\": {\r\n      \"_id\": \"55b2accc4f66690c07294201\",\r\n      \"firstName\": \"Justin\",\r\n      \"lastName\": \"Klemm\"\r\n    },\r\n    \"viewportSize\": null\r\n  }\r\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Duplicate Test",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/tests/{{testId}}/duplicate/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"tests",
+								"{{testId}}",
+								"duplicate",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "Duplicate a test within your account, return the new test. The new test will be duplicated within the same Suite as the original.\r\n\r\n{\r\n      \"code\": \"SUCCESS\",\r\n      \"data\": {\r\n        \"_id\": \"5e2b69f3d4c4051afbd2248f\",\r\n        \"autoRetry\": null,\r\n        \"browser\": null,\r\n        \"dateCreated\": \"2020-01-23T21:08:04.664Z\",\r\n        \"dateExecutionFinished\": \"1970-01-01T00:00:00.000Z\",\r\n        \"dateExecutionStarted\": \"1970-01-01T00:00:00.000Z\",\r\n        \"dateExecutionTriggered\": \"1970-01-01T00:00:00.000Z\",\r\n        \"dateUpdated\": \"2020-01-24T21:35:30.841Z\",\r\n        \"details\": \"This is a simple test that will log into the dashboard and assert that the widgets are showing up properly.\",\r\n        \"disableVisuals\": null,\r\n        \"disallowInsecureCertificates\": null,\r\n        \"failOnJavaScriptError\": null,\r\n        \"filters\": [],\r\n        \"finalDelay\": null,\r\n        \"globalStepDelay\": null,\r\n        \"httpHeaders\": [],\r\n        \"language\": null,\r\n        \"links\": [],\r\n        \"maxAjaxDelay\": null,\r\n        \"maxWaitDelay\": null,\r\n        \"name\": \"Login and Check Dashboard (Copy)\",\r\n        \"organization\": {\r\n          \"_id\": \"5a1b419ae40144279f9ac680\",\r\n          \"name\": \"Ghost Inspector\"\r\n        },\r\n        \"passing\": null,\r\n        \"publicStatusEnabled\": true,\r\n        \"region\": null,\r\n        \"screenshotCompareEnabled\": true,\r\n        \"screenshotComparePassing\": null,\r\n        \"screenshotCompareThreshold\": 0.01,\r\n        \"startUrl\": \"https://ghostinspector.com\",\r\n        \"steps\": [\r\n          {\r\n            \"_id\": \"5e2b5ce5854c611834aa6cd2\",\r\n            \"command\": \"click\",\r\n            \"condition\": {\r\n              \"statement\": \"return 2 + 2 === 4;\"\r\n            },\r\n            \"optional\": false,\r\n            \"private\": false,\r\n            \"sequence\": 0,\r\n            \"target\": \".site-logo a\",\r\n            \"value\": \"\",\r\n            \"variableName\": \"\"\r\n          },\r\n          {\r\n            \"_id\": \"5e2b5ce5854c611834aa6cd1\",\r\n            \"command\": \"open\",\r\n            \"condition\": null,\r\n            \"optional\": false,\r\n            \"private\": false,\r\n            \"sequence\": 1,\r\n            \"target\": \"\",\r\n            \"value\": \"/docs/\",\r\n            \"variableName\": \"\"\r\n          }\r\n        ],\r\n        \"suite\": {\r\n          \"_id\": \"5a1e1b90154014760af39ef5\",\r\n          \"name\": \"Smoke Tests\"\r\n        },\r\n        \"testFrequency\": 0,\r\n        \"testFrequencyAdvanced\": [],\r\n        \"user\": \"55b2accc4f66690c07294201\",\r\n        \"viewportSize\": null\r\n      }\r\n    }"
+					},
+					"response": []
+				},
+				{
+					"name": "List Test Results",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/tests/{{testId}}/results/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"tests",
+								"{{testId}}",
+								"results",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "Fetch an array containing the results for a test. Results are returned in reverse chronological order (newest first).\r\n\r\nParameters\r\napiKey\r\nYour API key provided in your account\r\ntestId\r\nThe ID of the test containing the results\r\ncount\r\nThe number of results to return (default 10, maximum 50)\r\noffset\r\nThe number of results to offset the returned set by (default 0)\r\n\r\nexampe Response\r\n{\r\n  \"code\": \"SUCCESS\",\r\n  \"data\": [\r\n    {\r\n      \"_id\": \"5e2b5d5dd4c4051afbd2248c\",\r\n      \"autoRetry\": false,\r\n      \"autoRetryTriggered\": false,\r\n      \"browser\": \"chrome-79\",\r\n      \"commentCount\": 0,\r\n      \"comments\": [],\r\n      \"console\": [\r\n        {\r\n          \"_id\": \"5e2b5d6765c1671520bc20d2\",\r\n          \"dateExecuted\": \"2020-01-24T21:10:58.098Z\",\r\n          \"error\": false,\r\n          \"output\": \"An  element was lazyloaded with loading=lazy, but had no dimensions specified. Specifying dimensions improves performance. See https://crbug.com/954323\",\r\n          \"url\": \"https://ghostinspector.com/\"\r\n        }\r\n      ],\r\n      \"dateCreated\": \"2020-01-24T21:10:53.194Z\",\r\n      \"dateExecutionFinished\": \"2020-01-24T21:11:03.194Z\",\r\n      \"dateExecutionStarted\": \"2020-01-24T21:10:56.108Z\",\r\n      \"disableVisuals\": false,\r\n      \"disallowInsecureCertificates\": false,\r\n      \"endUrl\": \"https://ghostinspector.com/\",\r\n      \"executionHost\": \"test001.ghostinspector.net\",\r\n      \"executionTime\": 7086,\r\n      \"extractions\": {},\r\n      \"failOnJavaScriptError\": false,\r\n      \"filters\": [],\r\n      \"finalDelay\": 0,\r\n      \"globalStepDelay\": 250,\r\n      \"language\": null,\r\n      \"maxAjaxDelay\": 10000,\r\n      \"maxWaitDelay\": 15000,\r\n      \"name\": \"Login and Check Dashboard\",\r\n      \"organization\": \"5a1b419ae40144279f9ac680\",\r\n      \"passing\": true,\r\n      \"region\": \"us-east-1\",\r\n      \"screenshot\": {\r\n        \"original\": {\r\n          \"defaultUrl\": \"https://ghostinspector-example.s3.amazonaws.com/screenshots/4b362e32-0bae-44b5-a482-387f3a882ebf-original.png\",\r\n          \"dims\": {\r\n            \"h\": 3315,\r\n            \"w\": 1024\r\n          },\r\n          \"path\": \"screenshots/4b362e32-0bae-44b5-a482-387f3a882ebf-original.png\",\r\n          \"size\": 508453\r\n        },\r\n        \"small\": {\r\n          \"defaultUrl\": \"https://ghostinspector-example.s3.amazonaws.com/screenshots/4b362e32-0bae-44b5-a482-387f3a882ebf-small.png\",\r\n          \"dims\": {\r\n            \"h\": 1036,\r\n            \"w\": 320\r\n          },\r\n          \"path\": \"screenshots/4b362e32-0bae-44b5-a482-387f3a882ebf-small.png\",\r\n          \"size\": 159382\r\n        }\r\n      },\r\n      \"screenshotCompareBaselineResult\": \"5e2b5d06854c611834aa6cd7\",\r\n      \"screenshotCompareDifference\": 0,\r\n      \"screenshotCompareEnabled\": true,\r\n      \"screenshotComparePassing\": true,\r\n      \"screenshotCompareThreshold\": 0.01,\r\n      \"startUrl\": \"https://ghostinspector.com\",\r\n      \"steps\": [\r\n        {\r\n          \"_id\": \"5e2b5d6965c1671520bc20d6\",\r\n          \"command\": \"click\",\r\n          \"condition\": {\r\n            \"statement\": \"return 2 + 2 === 4;\",\r\n            \"result\": true\r\n          },\r\n          \"dateExecuted\": \"2020-01-24T21:11:00.606Z\",\r\n          \"extra\": {\r\n            \"source\": {\r\n              \"sequence\": 0,\r\n              \"test\": \"5e2a0b342d0f5947444c31fc\"\r\n            }\r\n          },\r\n          \"notes\": \"\",\r\n          \"optional\": false,\r\n          \"passing\": true,\r\n          \"private\": false,\r\n          \"sequence\": 0,\r\n          \"target\": \".site-logo a\",\r\n          \"url\": \"https://ghostinspector.com/\",\r\n          \"value\": \"\",\r\n          \"variableName\": \"\"\r\n        },\r\n        {\r\n          \"_id\": \"5e2b5d6965c1671520bc20d7\",\r\n          \"command\": \"assertTextPresent\",\r\n          \"condition\": null,\r\n          \"dateExecuted\": \"2020-01-24T21:11:01.343Z\",\r\n          \"extra\": {\r\n            \"source\": {\r\n              \"sequence\": 1,\r\n              \"test\": \"5e2a0b342d0f5947444c31fc\"\r\n            }\r\n          },\r\n          \"notes\": \"\",\r\n          \"optional\": false,\r\n          \"passing\": true,\r\n          \"private\": false,\r\n          \"sequence\": 1,\r\n          \"target\": \"h1\",\r\n          \"url\": \"https://ghostinspector.com/\",\r\n          \"value\": \"Automated\",\r\n          \"variableName\": \"\"\r\n        }\r\n      ],\r\n      \"suiteResult\": null,\r\n      \"test\": {\r\n        \"_id\": \"5e2a0b342d0f5947444c31fc\",\r\n        \"name\": \"Login and Check Dashboard\",\r\n        \"organization\": \"5a1b419ae40144279f9ac680\",\r\n        \"suite\": \"5a1e1b90154014760af39ef5\"\r\n      },\r\n      \"urls\": [\r\n        \"https://ghostinspector.com\",\r\n        \"https://ghostinspector.com/\"\r\n      ],\r\n      \"user\": {\r\n        \"_id\": \"55b2accc4f66690c07294201\",\r\n        \"name\": \"Justin Klemm\"\r\n      },\r\n      \"uuid\": \"4b362e32-0bae-44b5-a482-387f3a882ebf\",\r\n      \"variables\": {\r\n        \"orgVar\": \"foo\"\r\n      },\r\n      \"video\": {\r\n        \"dims\": {\r\n          \"h\": 768,\r\n          \"w\": 1024\r\n        },\r\n        \"path\": \"videos/4b362e32-0bae-44b5-a482-387f3a882ebf.mp4\",\r\n        \"url\": \"https://ghostinspector-example.s3.amazonaws.com/videos/4b362e32-0bae-44b5-a482-387f3a882ebf.mp4\"\r\n      },\r\n      \"viewportSize\": {\r\n        \"height\": 768,\r\n        \"width\": 1024\r\n      }\r\n    },\r\n    {\r\n      \"_id\": \"5e2b6344854c611834aa6ce5\",\r\n      \"autoRetry\": false,\r\n      \"autoRetryTriggered\": false,\r\n      \"browser\": \"chrome-79\",\r\n      \"commentCount\": 0,\r\n      \"comments\": [],\r\n      \"console\": [\r\n        {\r\n          \"_id\": \"5e2b634e65c1671520bc20df\",\r\n          \"dateExecuted\": \"2020-01-24T21:36:08.818Z\",\r\n          \"error\": false,\r\n          \"output\": \"An  element was lazyloaded with loading=lazy, but had no dimensions specified. Specifying dimensions improves performance. See https://crbug.com/954323\",\r\n          \"url\": \"https://ghostinspector.com/\"\r\n        }\r\n      ],\r\n      \"dateCreated\": \"2020-01-24T21:36:04.013Z\",\r\n      \"dateExecutionFinished\": \"2020-01-24T21:36:14.674Z\",\r\n      \"dateExecutionStarted\": \"2020-01-24T21:36:06.839Z\",\r\n      \"disableVisuals\": false,\r\n      \"disallowInsecureCertificates\": false,\r\n      \"endUrl\": \"https://ghostinspector.com/docs/\",\r\n      \"executionHost\": \"test001.ghostinspector.net\",\r\n      \"executionTime\": 7835,\r\n      \"extractions\": {},\r\n      \"failOnJavaScriptError\": false,\r\n      \"filters\": [],\r\n      \"finalDelay\": 0,\r\n      \"globalStepDelay\": 250,\r\n      \"language\": null,\r\n      \"maxAjaxDelay\": 10000,\r\n      \"maxWaitDelay\": 15000,\r\n      \"name\": \"Login and Check Dashboard\",\r\n      \"organization\": \"5a1b419ae40144279f9ac680\",\r\n      \"passing\": true,\r\n      \"region\": \"us-east-1\",\r\n      \"screenshot\": {\r\n        \"original\": {\r\n          \"defaultUrl\": \"https://ghostinspector-example.s3.amazonaws.com/screenshots/b21ca485-c15b-40bd-9a5c-d9251f1948ef-original.png\",\r\n          \"dims\": {\r\n            \"h\": 2708,\r\n            \"w\": 1024\r\n          },\r\n          \"path\": \"screenshots/b21ca485-c15b-40bd-9a5c-d9251f1948ef-original.png\",\r\n          \"size\": 221486\r\n        },\r\n        \"small\": {\r\n          \"defaultUrl\": \"https://ghostinspector-example.s3.amazonaws.com/screenshots/b21ca485-c15b-40bd-9a5c-d9251f1948ef-small.png\",\r\n          \"dims\": {\r\n            \"h\": 846,\r\n            \"w\": 320\r\n          },\r\n          \"path\": \"screenshots/b21ca485-c15b-40bd-9a5c-d9251f1948ef-small.png\",\r\n          \"size\": 70909\r\n        }\r\n      },\r\n      \"screenshotCompare\": {\r\n        \"compareOriginal\": {\r\n          \"defaultUrl\": \"https://ghostinspector-example.s3.amazonaws.com/screenshots/b21ca485-c15b-40bd-9a5c-d9251f1948ef-compareOriginal.png\",\r\n          \"dims\": {\r\n            \"h\": 2708,\r\n            \"w\": 1024\r\n          },\r\n          \"path\": \"screenshots/b21ca485-c15b-40bd-9a5c-d9251f1948ef-compareOriginal.png\",\r\n          \"size\": 197958\r\n        },\r\n        \"compareSmall\": {\r\n          \"defaultUrl\": \"https://ghostinspector-example.s3.amazonaws.com/screenshots/b21ca485-c15b-40bd-9a5c-d9251f1948ef-compareSmall.png\",\r\n          \"dims\": {\r\n            \"h\": 846,\r\n            \"w\": 320\r\n          },\r\n          \"path\": \"screenshots/b21ca485-c15b-40bd-9a5c-d9251f1948ef-compareSmall.png\",\r\n          \"size\": 91638\r\n        }\r\n      },\r\n      \"screenshotCompareBaselineResult\": \"5e2b5d5dd4c4051afbd2248c\",\r\n      \"screenshotCompareDifference\": 0.47,\r\n      \"screenshotCompareEnabled\": true,\r\n      \"screenshotComparePassing\": true,\r\n      \"screenshotCompareThreshold\": 0.01,\r\n      \"startUrl\": \"https://ghostinspector.com\",\r\n      \"steps\": [\r\n        {\r\n          \"_id\": \"5e2b635165c1671520bc20e4\",\r\n          \"command\": \"click\",\r\n          \"condition\": {\r\n            \"statement\": \"return 2 + 2 === 4;\",\r\n            \"result\": true\r\n          },\r\n          \"dateExecuted\": \"2020-01-24T21:36:11.299Z\",\r\n          \"extra\": {\r\n            \"source\": {\r\n              \"sequence\": 0,\r\n              \"test\": \"5e2a0b342d0f5947444c31fc\"\r\n            }\r\n          },\r\n          \"notes\": \"\",\r\n          \"optional\": false,\r\n          \"passing\": true,\r\n          \"private\": false,\r\n          \"sequence\": 0,\r\n          \"target\": \".site-logo a\",\r\n          \"url\": \"https://ghostinspector.com/\",\r\n          \"value\": \"\",\r\n          \"variableName\": \"\"\r\n        },\r\n        {\r\n          \"_id\": \"5e2b635165c1671520bc20e5\",\r\n          \"command\": \"open\",\r\n          \"condition\": null,\r\n          \"dateExecuted\": \"2020-01-24T21:36:13.104Z\",\r\n          \"extra\": {\r\n            \"source\": {\r\n              \"sequence\": 1,\r\n              \"test\": \"5e2a0b342d0f5947444c31fc\"\r\n            }\r\n          },\r\n          \"notes\": \"\",\r\n          \"optional\": false,\r\n          \"passing\": true,\r\n          \"private\": false,\r\n          \"sequence\": 1,\r\n          \"target\": \"\",\r\n          \"url\": \"https://ghostinspector.com/\",\r\n          \"value\": \"/docs/\",\r\n          \"variableName\": \"\"\r\n        }\r\n      ],\r\n      \"suiteResult\": null,\r\n      \"test\": {\r\n        \"_id\": \"5e2a0b342d0f5947444c31fc\",\r\n        \"name\": \"Login and Check Dashboard\",\r\n        \"organization\": \"5a1b419ae40144279f9ac680\",\r\n        \"suite\": \"5a1e1b90154014760af39ef5\"\r\n      },\r\n      \"urls\": [\r\n        \"https://ghostinspector.com\",\r\n        \"https://ghostinspector.com/\",\r\n        \"https://ghostinspector.com/docs/\"\r\n      ],\r\n      \"user\": {\r\n        \"_id\": \"55b2accc4f66690c07294201\",\r\n        \"name\": \"Justin Klemm\"\r\n      },\r\n      \"uuid\": \"b21ca485-c15b-40bd-9a5c-d9251f1948ef\",\r\n      \"variables\": {\r\n        \"orgVar\": \"foo\"\r\n      },\r\n      \"video\": {\r\n        \"dims\": {\r\n          \"h\": 768,\r\n          \"w\": 1024\r\n        },\r\n        \"path\": \"videos/b21ca485-c15b-40bd-9a5c-d9251f1948ef.mp4\",\r\n        \"url\": \"https://ghostinspector-example.s3.amazonaws.com/videos/b21ca485-c15b-40bd-9a5c-d9251f1948ef.mp4\"\r\n      },\r\n      \"viewportSize\": {\r\n        \"height\": 768,\r\n        \"width\": 1024\r\n      }\r\n    }\r\n  ]\r\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "List Test Results CSV",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/tests/{{testId}}/results/csv/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"tests",
+								"{{testId}}",
+								"results",
+								"csv",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "Fetch a CSV formatted export of test results for a test. Results are returned in reverse chronological order (newest first).\r\n\r\nParameters\r\napiKey\r\nYour API key provided in your account\r\ntestId\r\nThe ID of the test containing the results\r\ncount\r\nThe number of results to return (default 10, maximum 50)\r\noffset\r\nThe number of results to offset the returned set by (default 0)"
+					},
+					"response": []
+				},
+				{
+					"name": "Download GI Format JSON",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/tests/{{testId}}/export/json/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"tests",
+								"{{testId}}",
+								"export",
+								"json",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "Download a single test in Ghost Inspector format (.json).\r\n\r\nexample Response\r\n{\r\n  \"autoRetry\": null,\r\n  \"browser\": null,\r\n  \"details\": \"This is a simple test that will log into the dashboard and assert that the widgets are showing up properly.\",\r\n  \"disableVisuals\": null,\r\n  \"disallowInsecureCertificates\": null,\r\n  \"failOnJavaScriptError\": null,\r\n  \"filters\": [],\r\n  \"finalDelay\": null,\r\n  \"globalStepDelay\": null,\r\n  \"httpHeaders\": [],\r\n  \"language\": null,\r\n  \"links\": [],\r\n  \"maxAjaxDelay\": null,\r\n  \"maxWaitDelay\": null,\r\n  \"name\": \"Login and Check Dashboard\",\r\n  \"notifications\": {\r\n    \"5b1e914a3bad610fa4a8fa8b\": {\r\n      \"enabled\": false\r\n    },\r\n    \"email\": {\r\n      \"enabled\": false\r\n    },\r\n    \"webhooks\": {\r\n      \"enabled\": false\r\n    }\r\n  },\r\n  \"publicStatusEnabled\": true,\r\n  \"region\": null,\r\n  \"screenshotCompareEnabled\": true,\r\n  \"screenshotCompareThreshold\": 0.01,\r\n  \"startUrl\": \"https://ghostinspector.com\",\r\n  \"steps\": [\r\n    {\r\n      \"command\": \"click\",\r\n      \"condition\": {\r\n        \"statement\": \"return 2 + 2 === 4;\"\r\n      },\r\n      \"optional\": false,\r\n      \"private\": false,\r\n      \"sequence\": 0,\r\n      \"target\": \".site-logo a\",\r\n      \"value\": \"\",\r\n      \"variableName\": \"\"\r\n    },\r\n    {\r\n      \"command\": \"open\",\r\n      \"condition\": null,\r\n      \"optional\": false,\r\n      \"private\": false,\r\n      \"sequence\": 1,\r\n      \"target\": \"\",\r\n      \"value\": \"/docs/\",\r\n      \"variableName\": \"\"\r\n    }\r\n  ],\r\n  \"testFrequency\": 0,\r\n  \"testFrequencyAdvanced\": [],\r\n  \"viewportSize\": null\r\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Download in Selenium Format side",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/tests/{{testId}}/export/selenium-side/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"tests",
+								"{{testId}}",
+								"export",
+								"selenium-side",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "Download a single test in Selenium IDE format (.side).\r\n\r\nexample Response\r\nResponse\r\n{\r\n  \"id\": \"2c181a11-c461-4bf3-8df2-7189434804a1\",\r\n  \"version\": \"1.1\",\r\n  \"name\": \"Sample Test\",\r\n  \"url\": \"http://sampledomain.com/\",\r\n  \"tests\": [\r\n    {\r\n      \"id\": \"9e7ea88a-8780-488a-9880-0396d8e341a2\",\r\n      \"name\": \"Sample Test\",\r\n      \"commands\": [\r\n        {\r\n          \"command\": \"open\",\r\n          \"target\": \"http://sampledomain.com/\",\r\n          \"value\": \"\"\r\n        },\r\n        {\r\n          \"command\": \"setWindowSize\",\r\n          \"target\": \"1024x768\",\r\n          \"value\": \"\"\r\n        },\r\n        {\r\n          \"comment\": \"\",\r\n          \"command\": \"type\",\r\n          \"target\": \"xpath=//input[@id=\\\"username\\\"]\",\r\n          \"value\": \"sample\"\r\n        }\r\n      ]\r\n    }\r\n  ],\r\n  \"suites\": [\r\n    {\r\n      \"id\": \"c7a3f198-7793-4231-817e-05427eca6be9\",\r\n      \"name\": \"Sample Test\",\r\n      \"persistSession\": false,\r\n      \"parallel\": true,\r\n      \"timeout\": 600,\r\n      \"tests\": [\r\n        \"9e7ea88a-8780-488a-9880-0396d8e341a2\"\r\n      ]\r\n    }\r\n  ],\r\n  \"plugins\": []\r\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Download in Selenium HTML",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/tests/{{testId}}/export/selenium-html/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"tests",
+								"{{testId}}",
+								"export",
+								"selenium-html",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "Download a single test in Selenium IDE format (.html).\r\n\r\nexample Response\r\n<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\">\r\n<head profile=\"http://selenium-ide.openqa.org/profiles/test-case\">\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\r\n<link rel=\"selenium.base\" href=\"https://ghostinspector.com\" />\r\n<title>Sample Test</title>\r\n</head>\r\n<body>\r\n<table cellpadding=\"1\" cellspacing=\"1\" border=\"1\">\r\n<thead>\r\n<tr>\r\n<td rowspan=\"1\" colspan=\"3\">Sample Test</td>\r\n</tr>\r\n</thead>\r\n<tbody>\r\n<tr>\r\n<td>open</td>\r\n<td>/</td>\r\n<td></td>\r\n</tr>\r\n<tr>\r\n<td>waitForPageToLoad</td>\r\n<td></td>\r\n<td></td>\r\n</tr>\r\n<tr>\r\n<td>waitForElementPresent</td>\r\n<td>css=#username</td>\r\n<td></td>\r\n</tr>\r\n<tr>\r\n<td>type</td>\r\n<td>css=#username</td>\r\n<td>test</td>\r\n</tr>\r\n<tr>\r\n<td>waitForPageToLoad</td>\r\n<td></td>\r\n<td></td>\r\n</tr>\r\n<tr>\r\n<td>waitForElementPresent</td>\r\n<td>css=#submit</td>\r\n<td></td>\r\n</tr>\r\n<tr>\r\n<td>click</td>\r\n<td>css=#submit</td>\r\n<td></td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n</body>\r\n</html>"
+					},
+					"response": []
+				},
+				{
+					"name": "Test Status Badges",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/tests/{{testId}}/status-badge",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"tests",
+								"{{testId}}",
+								"status-badge"
+							]
+						},
+						"description": "Note: Status badges are disabled by default and can be enabled under Test Settings > Details > Enable Status Badge.\r\n\r\nReal-time embeddable status badges for your test. Will return the appropriate status badge image based on the current status of your test.\r\n\r\nParameters\r\nscreenshot\r\nShow the status of screenshotComparePassing for this test.\r\n\r\nStatuses\r\nPassing\r\n The last completed run of this test passed.\r\nFailing\r\n The last completed run of this test failed.\r\nRunning\r\n Test execution is in progress.\r\nUnknown\r\n The test has no previous execution or the last execution was cancelled.\r\nScreenshot Compare\r\n The screenshot comparison for this test is passing.\r\n\r\n\r\nExample usage\r\n<img src=\"https://api.ghostinspector.com/v1/tests/<testId>/status-badge\" title=\"My test status\">"
+					},
+					"response": []
+				},
+				{
+					"name": "Execute On Demand Tests",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/organizations/{{organizationId}}/on-demand/execute?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"organizations",
+								"{{organizationId}}",
+								"on-demand",
+								"execute"
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "Execute an on-demand test using JSON from your file system or repository. This endpoint will trigger a test run created out of the JSON definition provided and immediately return a result ID. On-demand test results are associated with your organization, but are not tied to existing tests or suites within the system. Results must be retrieved using the result ID in the response and the Get Test Result endpoint.\r\n\r\nRequest Example using cURL\r\n\r\nPOST Request with JSON body:\r\ncurl -H 'Content-Type: application/json' -X POST -d \"@test.json\" 'https://api.ghostinspector.com/v1/organizations/<my-org-id>/on-demand/execute/'\r\n\r\nResponse\r\n{\r\n  \"code\": \"SUCCESS\",\r\n  \"data\": {\r\n    \"_id\": \"5dbc760c185e8911cfd6f2a0\",\r\n    \"user\": {\r\n      \"name\": \"Ghost User\",\r\n      \"_id\": \"59f35ea3ae726358914cc184\"\r\n    },\r\n    \"viewportSize\": {\r\n      \"width\": 1024,\r\n      \"height\": 768\r\n    },\r\n    \"commentCount\": 0,\r\n    \"disableVisuals\": false,\r\n    \"disallowInsecureCertificates\": null,\r\n    \"passing\": null,\r\n    \"screenshotCompareDifference\": null,\r\n    \"screenshotComparePassing\": null,\r\n    \"urls\": [],\r\n    \"autoRetry\": true,\r\n    \"browser\": \"chrome\",\r\n    \"comments\": [],\r\n    \"console\": [],\r\n    \"dateCreated\": \"2019-11-01T18:14:36.203Z\",\r\n    \"endUrl\": \"\",\r\n    \"executionHost\": \"test-runner-916cf2.ghostinspector.net\",\r\n    \"executionTime\": null,\r\n    \"failOnJavaScriptError\": false,\r\n    \"filters\": [],\r\n    \"finalDelay\": 5000,\r\n    \"globalStepDelay\": 250,\r\n    \"language\": null,\r\n    \"maxAjaxDelay\": 10000,\r\n    \"maxWaitDelay\": 15000,\r\n    \"name\": \"Assertions\",\r\n    \"organization\": \"5a0604918ee170435385d4a7\",\r\n    \"region\": \"us-east-1\",\r\n    \"screenshotCompareBaselineResult\": null,\r\n    \"screenshotCompareEnabled\": true,\r\n    \"screenshotCompareThreshold\": 0.1,\r\n    \"screenshotExclusions\": \"\",\r\n    \"screenshotTarget\": \"\",\r\n    \"startUrl\": \"https://www.onlineconstructioninc.com/\",\r\n    \"steps\": [\r\n      {\r\n        \"sequence\": 0,\r\n        \"condition\": null,\r\n        \"private\": false,\r\n        \"optional\": false,\r\n        \"passing\": null,\r\n        \"_id\": \"5dbc760c185e8911cfd6f2c2\",\r\n        \"command\": \"assign\",\r\n        \"target\": \"#username\",\r\n        \"value\": \"Decimal\",\r\n        \"variableName\": \"\",\r\n        \"notes\": \"Assign a \\\"Special\\\" string to make sure if doesn't get converted to the character\"\r\n      },\r\n      {\r\n        \"sequence\": 1,\r\n        \"condition\": null,\r\n        \"private\": false,\r\n        \"optional\": false,\r\n        \"passing\": null,\r\n        \"_id\": \"5dbc760c185e8911cfd6f2c1\",\r\n        \"command\": \"assertText\",\r\n        \"target\": \"#username\",\r\n        \"value\": \"Decimal\",\r\n        \"variableName\": \"\"\r\n      },\r\n      {\r\n        \"sequence\": 2,\r\n        \"condition\": {\r\n          \"statement\": \"return 2 + 2 === 4;\"\r\n        },\r\n        \"private\": false,\r\n        \"optional\": false,\r\n        \"passing\": null,\r\n        \"_id\": \"5dbc760c185e8911cfd6f2c0\",\r\n        \"command\": \"assign\",\r\n        \"target\": \"#username\",\r\n        \"value\": \"Escape\",\r\n        \"variableName\": \"\",\r\n        \"notes\": \"Assign a \\\"Special\\\" string to make sure if doesn't get converted to the character\"\r\n      }\r\n    ],\r\n    \"suiteResult\": null,\r\n    \"test\": null,\r\n    \"userAgent\": \"\",\r\n    \"uuid\": \"513e2f78-ad93-4158-a15e-a4f9e50e6322\",\r\n    \"dateExecutionStarted\": \"2019-11-01T18:14:36.287Z\"\r\n  }\r\n}"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Suite Results",
+			"item": [
+				{
+					"name": "Get Suite Result",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/suite-results/{{suiteResultId}}/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"suite-results",
+								"{{suiteResultId}}",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "apiKey: Your API key provided in your account\r\nsuiteResultId: The ID of the suite result to fetch\r\n\r\nexample Response\r\n{\r\n  \"code\": \"SUCCESS\",\r\n  \"data\": {\r\n    \"_id\": \"5e2b7924854c611834aa6cf6\",\r\n    \"commentCount\": 0,\r\n    \"comments\": [],\r\n    \"countFailing\": 0,\r\n    \"countPassing\": 1,\r\n    \"countScreenshotCompareFailing\": 0,\r\n    \"countScreenshotComparePassing\": 1,\r\n    \"countScreenshotCompareUnknown\": 0,\r\n    \"countUnknown\": 0,\r\n    \"dateCreated\": \"2020-01-24T23:09:24.477Z\",\r\n    \"dateExecutionFinished\": \"2020-01-24T23:11:39.548Z\",\r\n    \"dateExecutionStarted\": \"2020-01-24T23:09:24.477Z\",\r\n    \"executionTime\": 135071,\r\n    \"name\": \"Smoke Tests\",\r\n    \"passing\": true,\r\n    \"screenshotComparePassing\": true,\r\n    \"startUrl\": \"\",\r\n    \"suite\": {\r\n      \"_id\": \"5a1e1b90154014760af39ef5\",\r\n      \"name\": \"Smoke Tests\",\r\n      \"organization\": \"5a1b419ae40144279f9ac680\"\r\n    },\r\n    \"user\": {\r\n      \"_id\": \"55b2accc4f66690c07294201\",\r\n      \"name\": \"Justin Klemm\"\r\n    }\r\n  }\r\n}\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel Suite Run",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/suite-results/{{suiteResultId}}/cancel/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"suite-results",
+								"{{suiteResultId}}",
+								"cancel",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "example Response\r\n{\r\n  \"code\": \"SUCCESS\",\r\n  \"data\": {\r\n    \"_id\": \"5e2b7924854c611834aa6cf6\",\r\n    \"commentCount\": 0,\r\n    \"comments\": [],\r\n    \"countFailing\": 0,\r\n    \"countPassing\": 1,\r\n    \"countScreenshotCompareFailing\": 0,\r\n    \"countScreenshotComparePassing\": 1,\r\n    \"countScreenshotCompareUnknown\": 0,\r\n    \"countUnknown\": 0,\r\n    \"dateCreated\": \"2020-01-24T23:09:24.477Z\",\r\n    \"dateExecutionFinished\": \"2020-01-24T23:11:39.548Z\",\r\n    \"dateExecutionStarted\": \"2020-01-24T23:09:24.477Z\",\r\n    \"executionTime\": 135071,\r\n    \"name\": \"Smoke Tests\",\r\n    \"passing\": null,\r\n    \"screenshotComparePassing\": null,\r\n    \"startUrl\": \"\",\r\n    \"suite\": {\r\n      \"_id\": \"5a1e1b90154014760af39ef5\",\r\n      \"name\": \"Smoke Tests\",\r\n      \"organization\": \"5a1b419ae40144279f9ac680\"\r\n    },\r\n    \"user\": {\r\n      \"_id\": \"55b2accc4f66690c07294201\",\r\n      \"name\": \"Justin Klemm\"\r\n    }\r\n  }\r\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "List Test Results",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/suite-results/{{suiteResultId}}/results/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"suite-results",
+								"{{suiteResultId}}",
+								"results",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "Fetch an array containing the test results in a suite result. Results are returned in the order they were created when the suite was triggered (typically alphabetical order by test name)\r\n\r\napiKey\r\nYour API key provided in your account\r\nsuiteResultId\r\nThe ID of the suite result containing the test results\r\ncount\r\nThe number of results to return (default 10, maximum 50)\r\noffset\r\nThe number of results to offset the returned set by (default 0)\r\n\r\nexample Response\r\n{\r\n  \"code\": \"SUCCESS\",\r\n  \"data\": [\r\n    {\r\n      \"_id\": \"5e2b7924854c611834aa6cf7\",\r\n      \"autoRetry\": false,\r\n      \"autoRetryTriggered\": false,\r\n      \"browser\": \"chrome-79\",\r\n      \"commentCount\": 0,\r\n      \"comments\": [],\r\n      \"console\": [\r\n        {\r\n          \"_id\": \"5e2b79a665c1671520bc20f1\",\r\n          \"dateExecuted\": \"2020-01-24T23:09:28.104Z\",\r\n          \"error\": false,\r\n          \"output\": \"An  element was lazyloaded with loading=lazy, but had no dimensions specified. Specifying dimensions improves performance. See https://crbug.com/954323\",\r\n          \"url\": \"https://ghostinspector.com/\"\r\n        }\r\n      ],\r\n      \"dateCreated\": \"2020-01-24T23:09:24.498Z\",\r\n      \"dateExecutionFinished\": \"2020-01-24T23:11:34.886Z\",\r\n      \"dateExecutionStarted\": \"2020-01-24T23:09:26.088Z\",\r\n      \"disableVisuals\": false,\r\n      \"disallowInsecureCertificates\": false,\r\n      \"endUrl\": \"https://ghostinspector.com/docs/\",\r\n      \"executionHost\": \"test001.ghostinspector.net\",\r\n      \"executionTime\": 128798,\r\n      \"extractions\": {},\r\n      \"failOnJavaScriptError\": false,\r\n      \"filters\": [],\r\n      \"finalDelay\": 0,\r\n      \"globalStepDelay\": 250,\r\n      \"language\": null,\r\n      \"maxAjaxDelay\": 10000,\r\n      \"maxWaitDelay\": 15000,\r\n      \"name\": \"Login and Check Dashboard\",\r\n      \"organization\": \"5a1b419ae40144279f9ac680\",\r\n      \"passing\": true,\r\n      \"region\": \"us-east-1\",\r\n      \"screenshot\": {\r\n        \"original\": {\r\n          \"defaultUrl\": \"https://ghostinspector-example.s3.amazonaws.com/screenshots/b354de4b-eca1-40bd-9f81-8e550642f1a4-original.png\",\r\n          \"dims\": {\r\n            \"h\": 2708,\r\n            \"w\": 1024\r\n          },\r\n          \"path\": \"screenshots/b354de4b-eca1-40bd-9f81-8e550642f1a4-original.png\",\r\n          \"size\": 221486\r\n        },\r\n        \"small\": {\r\n          \"defaultUrl\": \"https://ghostinspector-example.s3.amazonaws.com/screenshots/b354de4b-eca1-40bd-9f81-8e550642f1a4-small.png\",\r\n          \"dims\": {\r\n            \"h\": 846,\r\n            \"w\": 320\r\n          },\r\n          \"path\": \"screenshots/b354de4b-eca1-40bd-9f81-8e550642f1a4-small.png\",\r\n          \"size\": 70909\r\n        }\r\n      },\r\n      \"screenshotCompareBaselineResult\": \"5e2b7133854c611834aa6ceb\",\r\n      \"screenshotCompareDifference\": 0,\r\n      \"screenshotCompareEnabled\": true,\r\n      \"screenshotComparePassing\": true,\r\n      \"screenshotCompareThreshold\": 0.01,\r\n      \"startUrl\": \"https://ghostinspector.com\",\r\n      \"steps\": [\r\n        {\r\n          \"_id\": \"5e2b79a865c1671520bc20f6\",\r\n          \"command\": \"click\",\r\n          \"condition\": null,\r\n          \"dateExecuted\": \"2020-01-24T23:09:30.591Z\",\r\n          \"extra\": {\r\n            \"source\": {\r\n              \"sequence\": 0,\r\n              \"test\": \"5e2a0b342d0f5947444c31fc\"\r\n            }\r\n          },\r\n          \"notes\": \"\",\r\n          \"optional\": false,\r\n          \"passing\": true,\r\n          \"private\": false,\r\n          \"sequence\": 0,\r\n          \"target\": \".site-logo a\",\r\n          \"url\": \"https://ghostinspector.com/\",\r\n          \"value\": \"\",\r\n          \"variableName\": \"\"\r\n        },\r\n        {\r\n          \"_id\": \"5e2b79a865c1671520bc20f8\",\r\n          \"command\": \"open\",\r\n          \"condition\": null,\r\n          \"dateExecuted\": \"2020-01-24T23:11:33.303Z\",\r\n          \"extra\": {\r\n            \"source\": {\r\n              \"sequence\": 1,\r\n              \"test\": \"5e2a0b342d0f5947444c31fc\"\r\n            }\r\n          },\r\n          \"notes\": \"\",\r\n          \"optional\": false,\r\n          \"passing\": true,\r\n          \"private\": false,\r\n          \"sequence\": 1,\r\n          \"target\": \"\",\r\n          \"url\": \"https://ghostinspector.com/\",\r\n          \"value\": \"/docs/\",\r\n          \"variableName\": \"\"\r\n        }\r\n      ],\r\n      \"suiteResult\": \"5e2b7924854c611834aa6cf6\",\r\n      \"test\": {\r\n        \"_id\": \"5e2a0b342d0f5947444c31fc\",\r\n        \"name\": \"Login and Check Dashboard\",\r\n        \"organization\": \"5a1b419ae40144279f9ac680\",\r\n        \"suite\": \"5a1e1b90154014760af39ef5\"\r\n      },\r\n      \"urls\": [\r\n        \"https://ghostinspector.com\",\r\n        \"https://ghostinspector.com/\",\r\n        \"https://ghostinspector.com/docs/\"\r\n      ],\r\n      \"user\": {\r\n        \"_id\": \"55b2accc4f66690c07294201\",\r\n        \"name\": \"Justin Klemm\"\r\n      },\r\n      \"uuid\": \"b354de4b-eca1-40bd-9f81-8e550642f1a4\",\r\n      \"variables\": {\r\n        \"orgVar\": \"foo\"\r\n      },\r\n      \"video\": {\r\n        \"dims\": {\r\n          \"h\": 768,\r\n          \"w\": 1024\r\n        },\r\n        \"path\": \"videos/b354de4b-eca1-40bd-9f81-8e550642f1a4.mp4\",\r\n        \"url\": \"https://ghostinspector-example.s3.amazonaws.com/videos/b354de4b-eca1-40bd-9f81-8e550642f1a4.mp4\"\r\n      },\r\n      \"viewportSize\": {\r\n        \"height\": 768,\r\n        \"width\": 1024\r\n      }\r\n    }\r\n  ]\r\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Get XUnit XML Report",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/suite-results/{{suiteResultId}}/xunit/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"suite-results",
+								"{{suiteResultId}}",
+								"xunit",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "Fetch an XML report (XUnit v2) for a suite result.\r\n\r\n\r\nResponse\r\n<assemblies>\r\n  <assembly test-framework=\"Ghost Inspector\" name=\"Ghost Inspector Suites\" run-date=\"2018-10-03\" run-time=\"17:17:24\" time=\"45.071\" passed=\"2\" failed=\"0\" skipped=\"0\" total=\"2\" config-file=\"/no-config-file\" environment=\"browser\">\r\n    <collection name=\"Promises - Chrome\" time=\"45.071\" passed=\"2\" failed=\"0\" skipped=\"0\" total=\"2\">\r\n      <test name=\"Promises - Chrome\" type=\"browser\" method=\"Promises - Chrome\" time=\"26.205\" result=\"Pass\">\r\n        <traits>\r\n          <trait/>\r\n        </traits>\r\n      </test>\r\n      <test name=\"Verify > Promises - Chrome\" type=\"browser\" method=\"Verify > Promises - Chrome\" time=\"10.386\" result=\"Pass\">\r\n        <traits>\r\n          <trait/>\r\n        </traits>\r\n      </test>\r\n    </collection>\r\n    <errors/>\r\n  </assembly>\r\n</assemblies>"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Test Results",
+			"item": [
+				{
+					"name": "Get Test Result",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/results/{{resultId}}/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"results",
+								"{{resultId}}",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "example Response\r\n{\r\n  \"code\": \"SUCCESS\",\r\n  \"data\": {\r\n    \"_id\": \"5e2b7133854c611834aa6ceb\",\r\n    \"autoRetry\": false,\r\n    \"autoRetryTriggered\": false,\r\n    \"browser\": \"chrome-79\",\r\n    \"commentCount\": 0,\r\n    \"comments\": [],\r\n    \"console\": [\r\n      {\r\n        \"_id\": \"5e2b714065c1671520bc20e6\",\r\n        \"dateExecuted\": \"2020-01-24T22:35:38.468Z\",\r\n        \"error\": false,\r\n        \"output\": \"An  element was lazyloaded with loading=lazy, but had no dimensions specified. Specifying dimensions improves performance. See https://crbug.com/954323\",\r\n        \"url\": \"https://ghostinspector.com/\"\r\n      }\r\n    ],\r\n    \"dateCreated\": \"2020-01-24T22:35:31.256Z\",\r\n    \"dateExecutionFinished\": \"2020-01-24T22:35:44.348Z\",\r\n    \"dateExecutionStarted\": \"2020-01-24T22:35:36.451Z\",\r\n    \"disableVisuals\": false,\r\n    \"disallowInsecureCertificates\": false,\r\n    \"endUrl\": \"https://ghostinspector.com/docs/\",\r\n    \"executionHost\": \"test001.ghostinspector.net\",\r\n    \"executionTime\": 7897,\r\n    \"failOnJavaScriptError\": false,\r\n    \"filters\": [],\r\n    \"finalDelay\": 0,\r\n    \"globalStepDelay\": 250,\r\n    \"language\": null,\r\n    \"maxAjaxDelay\": 10000,\r\n    \"maxWaitDelay\": 15000,\r\n    \"name\": \"Login and Check Dashboard\",\r\n    \"organization\": \"5a1b419ae40144279f9ac680\",\r\n    \"passing\": true,\r\n    \"region\": \"us-east-1\",\r\n    \"screenshot\": {\r\n      \"original\": {\r\n        \"defaultUrl\": \"https://ghostinspector-example.s3.amazonaws.com/screenshots/f4357288-944a-4acd-97a0-c8a9b617dd54-original.png\",\r\n        \"dims\": {\r\n          \"h\": 2708,\r\n          \"w\": 1024\r\n        },\r\n        \"path\": \"screenshots/f4357288-944a-4acd-97a0-c8a9b617dd54-original.png\",\r\n        \"size\": 221486\r\n      },\r\n      \"small\": {\r\n        \"defaultUrl\": \"https://ghostinspector-example.s3.amazonaws.com/screenshots/f4357288-944a-4acd-97a0-c8a9b617dd54-small.png\",\r\n        \"dims\": {\r\n          \"h\": 846,\r\n          \"w\": 320\r\n        },\r\n        \"path\": \"screenshots/f4357288-944a-4acd-97a0-c8a9b617dd54-small.png\",\r\n        \"size\": 70909\r\n      }\r\n    },\r\n    \"screenshotCompareBaselineResult\": \"5e2b6344854c611834aa6ce5\",\r\n    \"screenshotCompareDifference\": 0,\r\n    \"screenshotCompareEnabled\": true,\r\n    \"screenshotComparePassing\": true,\r\n    \"screenshotCompareThreshold\": 0.01,\r\n    \"startUrl\": \"https://ghostinspector.com\",\r\n    \"steps\": [\r\n      {\r\n        \"_id\": \"5e2b714165c1671520bc20eb\",\r\n        \"command\": \"click\",\r\n        \"condition\": null,\r\n        \"dateExecuted\": \"2020-01-24T22:35:40.954Z\",\r\n        \"extra\": {\r\n          \"source\": {\r\n            \"sequence\": 0,\r\n            \"test\": \"5e2a0b342d0f5947444c31fc\"\r\n          }\r\n        },\r\n        \"notes\": \"\",\r\n        \"optional\": false,\r\n        \"passing\": true,\r\n        \"private\": false,\r\n        \"sequence\": 0,\r\n        \"target\": \".site-logo a\",\r\n        \"url\": \"https://ghostinspector.com/\",\r\n        \"value\": \"\",\r\n        \"variableName\": \"\"\r\n      },\r\n      {\r\n        \"_id\": \"5e2b714165c1671520bc20ec\",\r\n        \"command\": \"open\",\r\n        \"condition\": null,\r\n        \"dateExecuted\": \"2020-01-24T22:35:42.754Z\",\r\n        \"extra\": {\r\n          \"source\": {\r\n            \"sequence\": 1,\r\n            \"test\": \"5e2a0b342d0f5947444c31fc\"\r\n          }\r\n        },\r\n        \"notes\": \"\",\r\n        \"optional\": false,\r\n        \"passing\": true,\r\n        \"private\": false,\r\n        \"sequence\": 1,\r\n        \"target\": \"\",\r\n        \"url\": \"https://ghostinspector.com/\",\r\n        \"value\": \"/docs/\",\r\n        \"variableName\": \"\"\r\n      }\r\n    ],\r\n    \"suiteResult\": null,\r\n    \"test\": {\r\n      \"_id\": \"5e2a0b342d0f5947444c31fc\",\r\n      \"name\": \"Login and Check Dashboard\",\r\n      \"organization\": \"5a1b419ae40144279f9ac680\",\r\n      \"suite\": \"5a1e1b90154014760af39ef5\"\r\n    },\r\n    \"urls\": [\r\n      \"https://ghostinspector.com\",\r\n      \"https://ghostinspector.com/\",\r\n      \"https://ghostinspector.com/docs/\"\r\n    ],\r\n    \"user\": {\r\n      \"_id\": \"55b2accc4f66690c07294201\",\r\n      \"name\": \"Justin Klemm\"\r\n    },\r\n    \"uuid\": \"f4357288-944a-4acd-97a0-c8a9b617dd54\",\r\n    \"variables\": {\r\n      \"orgVar\": \"foo\"\r\n    },\r\n    \"video\": {\r\n      \"dims\": {\r\n        \"h\": 768,\r\n        \"w\": 1024\r\n      },\r\n      \"path\": \"videos/f4357288-944a-4acd-97a0-c8a9b617dd54.mp4\",\r\n      \"url\": \"https://ghostinspector-example.s3.amazonaws.com/videos/f4357288-944a-4acd-97a0-c8a9b617dd54.mp4\"\r\n    },\r\n    \"viewportSize\": {\r\n      \"height\": 768,\r\n      \"width\": 1024\r\n    }\r\n  }\r\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel Test Run",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://api.ghostinspector.com/v1/results/{{resultId}}/cancel/?apiKey={{apiKey}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ghostinspector",
+								"com"
+							],
+							"path": [
+								"v1",
+								"results",
+								"{{resultId}}",
+								"cancel",
+								""
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "Cancel an active test run"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Webhooks",
+			"item": [
+				{
+					"name": "Webhooks",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "---not sure yet---?=&apiKey={{apiKey}}",
+							"host": [
+								"---not sure yet---"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": ""
+								},
+								{
+									"key": "apiKey",
+									"value": "{{apiKey}}"
+								}
+							]
+						},
+						"description": "sample payload:\r\n\r\n{\r\n  \"type\": \"result\",\r\n  \"data\": {\r\n    \"_id\": \"5e2b7133854c611834aa6ceb\",\r\n    \"autoRetry\": false,\r\n    \"autoRetryTriggered\": false,\r\n    \"browser\": \"chrome-79\",\r\n    \"commentCount\": 0,\r\n    \"comments\": [],\r\n    \"console\": [\r\n      {\r\n        \"_id\": \"5e2b714065c1671520bc20e6\",\r\n        \"dateExecuted\": \"2020-01-24T22:35:38.468Z\",\r\n        \"error\": false,\r\n        \"output\": \"An  element was lazyloaded with loading=lazy, but had no dimensions specified. Specifying dimensions improves performance. See https://crbug.com/954323\",\r\n        \"url\": \"https://ghostinspector.com/\"\r\n      }\r\n    ],\r\n    \"dateCreated\": \"2020-01-24T22:35:31.256Z\",\r\n    \"dateExecutionFinished\": \"2020-01-24T22:35:44.348Z\",\r\n    \"dateExecutionStarted\": \"2020-01-24T22:35:36.451Z\",\r\n    \"deleted\": false,\r\n    \"disableVisuals\": false,\r\n    \"disallowInsecureCertificates\": false,\r\n    \"endUrl\": \"https://ghostinspector.com/docs/\",\r\n    \"executionHost\": \"test001.ghostinspector.net\",\r\n    \"executionTime\": 7897,\r\n    \"failOnJavaScriptError\": false,\r\n    \"filters\": [],\r\n    \"finalDelay\": 0,\r\n    \"globalStepDelay\": 250,\r\n    \"language\": null,\r\n    \"maxAjaxDelay\": 10000,\r\n    \"maxWaitDelay\": 15000,\r\n    \"name\": \"Login and Check Dashboard\",\r\n    \"organization\": {\r\n      \"_id\": \"5a1b419ae40144279f9ac680\",\r\n      \"name\": \"Ghost Inspector\"\r\n    },\r\n    \"passing\": true,\r\n    \"region\": \"us-east-1\",\r\n    \"screenshot\": {\r\n      \"original\": {\r\n        \"defaultUrl\": \"https://ghostinspector-example.s3.amazonaws.com/screenshots/f4357288-944a-4acd-97a0-c8a9b617dd54-original.png\",\r\n        \"dims\": {\r\n          \"h\": 2708,\r\n          \"w\": 1024\r\n        },\r\n        \"path\": \"screenshots/f4357288-944a-4acd-97a0-c8a9b617dd54-original.png\",\r\n        \"size\": 221486\r\n      },\r\n      \"small\": {\r\n        \"defaultUrl\": \"https://ghostinspector-example.s3.amazonaws.com/screenshots/f4357288-944a-4acd-97a0-c8a9b617dd54-small.png\",\r\n        \"dims\": {\r\n          \"h\": 846,\r\n          \"w\": 320\r\n        },\r\n        \"path\": \"screenshots/f4357288-944a-4acd-97a0-c8a9b617dd54-small.png\",\r\n        \"size\": 70909\r\n      }\r\n    },\r\n    \"screenshotCompareBaselineResult\": {\r\n      \"_id\": \"5e2b6344854c611834aa6ce5\",\r\n      \"screenshot\": {\r\n        \"original\": {\r\n          \"defaultUrl\": \"https://ghostinspector-example.s3.amazonaws.com/screenshots/b21ca485-c15b-40bd-9a5c-d9251f1948ef-original.png\",\r\n          \"dims\": {\r\n            \"h\": 2708,\r\n            \"w\": 1024\r\n          },\r\n          \"path\": \"screenshots/b21ca485-c15b-40bd-9a5c-d9251f1948ef-original.png\",\r\n          \"size\": 221486\r\n        },\r\n        \"small\": {\r\n          \"defaultUrl\": \"https://ghostinspector-example.s3.amazonaws.com/screenshots/b21ca485-c15b-40bd-9a5c-d9251f1948ef-small.png\",\r\n          \"dims\": {\r\n            \"h\": 846,\r\n            \"w\": 320\r\n          },\r\n          \"path\": \"screenshots/b21ca485-c15b-40bd-9a5c-d9251f1948ef-small.png\",\r\n          \"size\": 70909\r\n        }\r\n      }\r\n    },\r\n    \"screenshotCompareDifference\": 0,\r\n    \"screenshotCompareEnabled\": true,\r\n    \"screenshotComparePassing\": true,\r\n    \"screenshotCompareThreshold\": 0.01,\r\n    \"startUrl\": \"https://ghostinspector.com\",\r\n    \"steps\": [\r\n      {\r\n        \"_id\": \"5e2b714165c1671520bc20eb\",\r\n        \"command\": \"click\",\r\n        \"condition\": null,\r\n        \"dateExecuted\": \"2020-01-24T22:35:40.954Z\",\r\n        \"extra\": {\r\n          \"source\": {\r\n            \"sequence\": 0,\r\n            \"test\": \"5e2a0b342d0f5947444c31fc\"\r\n          }\r\n        },\r\n        \"notes\": \"\",\r\n        \"optional\": false,\r\n        \"passing\": true,\r\n        \"private\": false,\r\n        \"sequence\": 0,\r\n        \"target\": \".site-logo a\",\r\n        \"url\": \"https://ghostinspector.com/\",\r\n        \"value\": \"\",\r\n        \"variableName\": \"\"\r\n      },\r\n      {\r\n        \"_id\": \"5e2b714165c1671520bc20ec\",\r\n        \"command\": \"open\",\r\n        \"condition\": null,\r\n        \"dateExecuted\": \"2020-01-24T22:35:42.754Z\",\r\n        \"extra\": {\r\n          \"source\": {\r\n            \"sequence\": 1,\r\n            \"test\": \"5e2a0b342d0f5947444c31fc\"\r\n          }\r\n        },\r\n        \"notes\": \"\",\r\n        \"optional\": false,\r\n        \"passing\": true,\r\n        \"private\": false,\r\n        \"sequence\": 1,\r\n        \"target\": \"\",\r\n        \"url\": \"https://ghostinspector.com/\",\r\n        \"value\": \"/docs/\",\r\n        \"variableName\": \"\"\r\n      }\r\n    ],\r\n    \"suite\": {\r\n      \"_id\": \"5a1e1b90154014760af39ef5\",\r\n      \"name\": \"Smoke Tests\"\r\n    },\r\n    \"suiteResult\": null,\r\n    \"test\": {\r\n      \"_id\": \"5e2a0b342d0f5947444c31fc\",\r\n      \"name\": \"Login and Check Dashboard\",\r\n      \"organization\": \"5a1b419ae40144279f9ac680\",\r\n      \"suite\": \"5a1e1b90154014760af39ef5\"\r\n    },\r\n    \"urls\": [\r\n      \"https://ghostinspector.com\",\r\n      \"https://ghostinspector.com/\",\r\n      \"https://ghostinspector.com/docs/\"\r\n    ],\r\n    \"user\": {\r\n      \"_id\": \"55b2accc4f66690c07294201\",\r\n      \"name\": \"Justin Klemm\"\r\n    },\r\n    \"uuid\": \"f4357288-944a-4acd-97a0-c8a9b617dd54\",\r\n    \"video\": {\r\n      \"dims\": {\r\n        \"h\": 768,\r\n        \"w\": 1024\r\n      },\r\n      \"path\": \"videos/f4357288-944a-4acd-97a0-c8a9b617dd54.mp4\",\r\n      \"url\": \"https://ghostinspector-example.s3.amazonaws.com/videos/f4357288-944a-4acd-97a0-c8a9b617dd54.mp4\"\r\n    },\r\n    \"viewportSize\": {\r\n      \"height\": 768,\r\n      \"width\": 1024\r\n    }\r\n  }\r\n}"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "ffe2360d-ff26-4686-b4c3-b108db6b2564",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "ad991563-ed68-477c-900e-3bfe737f1fb4",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "c8779102-23aa-47fb-bb6b-be22951f391b",
+			"key": "apiKey",
+			"value": "5ddf30aae9f01cae849e738479727c2dfd42b072"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
